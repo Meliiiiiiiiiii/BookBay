@@ -1,30 +1,27 @@
-﻿using System;
+using System;
 using System.Data.SqlClient;
-using System.Web.UI.HtmlControls;
+using System.Net.NetworkInformation;
 
-public partial class _1Viewer : System.Web.UI.Page
+namespace Model.Receipt
 {
     public class Receipt
     {
-
+        
         private int orderID;
         private float tax;
         private string paymentMethod;
         private float totalPrice;
 
-        public int OrderID
-        {
+        public int OrderID {
             get { return orderID; }
             set { orderID = value; }
         }
-        public float Tax
-        {
+        public float Tax {
             get { return tax; }
             set { tax = value; }
         }
 
-        public string PaymentMethod
-        {
+        public string PaymentMethod{
             get { return paymentMethod; }
             set { paymentMethod = value; }
         }
@@ -35,7 +32,10 @@ public partial class _1Viewer : System.Web.UI.Page
             set { totalPrice = value; }
         }
     }
+}
 
+namespace Model.ConnectionDb
+{
     public class DatabaseHelper
     {
         private static readonly string connectionString = "Data Source=v00egd00002l.lec-admin.dmu.ac.uk;" +
@@ -50,34 +50,11 @@ public partial class _1Viewer : System.Web.UI.Page
             {
                 conn.Open();
             }
-            catch (Exception e)
-            {
+            catch(Exception e) {
                 Console.WriteLine("Error connectibg to database" + e.Message);
             }
             return conn;
         }
-
-    }
-
-    protected void Page_Load(object sender, EventArgs e)
-    {
-        SqlCommand cmd;
-
-
-        Receipt Receipt = new Receipt();
-        var open = DatabaseHelper.GetConnection();
-        HtmlGenericControl tBody = (HtmlGenericControl)FindControl("tableBody");
-        if (!String.IsNullOrEmpty(Request.QueryString["OrderID"]))
-        {
-            if (tBody != null)
-            {
-                
-            }
-
-        }
-
-
-        
 
     }
 }
