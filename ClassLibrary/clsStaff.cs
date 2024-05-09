@@ -46,6 +46,11 @@ namespace ClassLibrary
             get { return staffSalary; }
             set { staffSalary = value; }
         }
+        public bool StaffIsAdmin
+        {
+            get { return staffIsAdmin; }
+            set { staffIsAdmin = true; }
+        }
 
     }
 }
