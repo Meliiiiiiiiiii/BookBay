@@ -87,5 +87,19 @@ namespace Testing1
             //test to see that the two values are the same
             Assert.AreEqual(AStaff.StaffSalary, Testdata);
         }
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsStaff AStaff = new clsStaff();
+            //create a boolean variable to store the result of the validation
+            bool found =false;
+            //create some test data to use with the method
+            int AStaffId = 21;
+            //Invoke the method
+            found =AStaff.Find(AStaffId);
+            //test to see if the result is true
+            Assert.IsTrue(found);
+        }
     }
 }

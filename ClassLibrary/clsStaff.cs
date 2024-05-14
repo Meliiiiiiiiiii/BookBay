@@ -51,6 +51,10 @@ namespace ClassLibrary
             get { return staffIsAdmin; }
             set { staffIsAdmin = true; }
         }
-
+        public bool Find(int staffNo)
+        {
+            //always return true
+            return true;
+        }
     }
 }
