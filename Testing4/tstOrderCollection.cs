@@ -30,17 +30,8 @@ namespace Testing4
             AllOrders.OrderList = TestList;
             Assert.AreEqual(AllOrders.OrderList, TestList);
         }
-        [TestMethod]
-        public void CountPropertyOK()
-        {
-            clsOrderCollection AllOrders = new clsOrderCollection();
-            Int32 SomeCount = 0;
-            AllOrders.Count = SomeCount;
-            Assert.AreEqual(AllOrders.Count, SomeCount);
-
-
-
-        }
+        
+        
         [TestMethod]
         public void ThisOrderPropertyOK()
         {
@@ -56,5 +47,23 @@ namespace Testing4
             Assert.AreEqual(AllOrders.ThisOrder, TestOrder);
 
         }
+        [TestMethod]
+        public void ListAndCountOK()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            List<clsOrder> TestList = new List<clsOrder>();
+            clsOrder TestItem = new clsOrder();
+            TestItem.OrderId = 1;
+            TestItem.CustomerId = 1;
+            TestItem.BookId = 1;
+            TestItem.OrderDate = DateTime.Now;
+            TestItem.OrderPrice = 1;
+            TestItem.OrderStatus = "delivered";
+            TestList.Add(TestItem);
+            AllOrders.OrderList = TestList;
+            Assert.AreEqual(AllOrders.Count,TestList.Count);
+
+        }
+        
     }
 }

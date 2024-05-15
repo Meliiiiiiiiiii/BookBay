@@ -1,11 +1,61 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ClassLibrary
 {
+
     public class clsOrderCollection
     {
+        public clsOrderCollection()
+        {
+            Int32 Index = 0;
+            Int32 RecordCount = 0;
+            clsDataConnection DB = new clsDataConnection();
+            DB.Execute("sporc_OrderTable_SelectAll");
+            RecordCount = DB.Count;
+            while (Index<RecordCount)
+            {
+                clsOrder AnOrder = new clsOrder();
+                AnOrder.OrderId = Convert.ToInt32(DB.DataTable.Rows[Index]["Order_ID"]);
+                AnOrder.CustomerId = Convert.ToInt32(DB.DataTable.Rows[Index]["Customer_ID"]);
+                AnOrder.BookId = Convert.ToInt32(DB.DataTable.Rows[Index]["Book_ID"]);
+                AnOrder.OrderDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["Order_Date"]);
+                AnOrder.OrderPrice = Convert.ToInt32(DB.DataTable.Rows[Index]["Order_Price"]);
+                AnOrder.OrderStatus = Convert.ToString(DB.DataTable.Rows[Index]["Order_Status"]);
+                mOrderList.Add( AnOrder );
+                Index++;
+            }
+
+        }
+       
+
+
+
+
+
+        List<clsOrder> mOrderList = new List<clsOrder> ();
         public clsOrder ThisOrder { get; set; }
-        public int Count { get; set; }
-        public List<clsOrder> OrderList { get; set; }
+        public int Count {
+            get 
+            {
+                return mOrderList.Count;
+            } set 
+            {
+                
+            }
+        }
+        public List<clsOrder> OrderList {
+            get 
+            { 
+                return mOrderList;
+            }
+            set 
+
+            {
+                mOrderList = value;
+            }
+                
+            }
+        
     }
 }
