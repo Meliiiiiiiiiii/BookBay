@@ -7,6 +7,15 @@ namespace Testing1
     [TestClass]
     public class tstStaff
     {
+        //good test data
+        //create some test data to pass the method
+        Int32 staffId = 1;
+        String staffName = "Melissa Ouamer Ali";
+        String staffEmail = "ouameralimelissa@gmail.com";
+        String staffPhone = "07440344684";
+        String staffHireDate = DateTime.Now.ToShortDateString();
+        Boolean staffIsAdmin = true;
+        Int32 staffSalary = 8000;
         [TestMethod]
         public void InstanceOK()
         {
@@ -248,6 +257,19 @@ namespace Testing1
             }
             //test to see that the result is correct
             Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsStaff aStaff = new clsStaff();
+
+            //string variable to storeany error message
+            string Error = "";
+            //invoke the method
+            Error = aStaff.Valid(staffId, staffName ,staffEmail ,staffPhone,staffHireDate,staffIsAdmin,staffSalary);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
         }
     }
 }

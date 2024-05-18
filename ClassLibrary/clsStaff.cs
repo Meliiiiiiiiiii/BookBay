@@ -87,5 +87,10 @@ namespace ClassLibrary
                 return false;
             }
         }
+
+        public string Valid(int staffId, string staffName, string staffEmail, string staffPhone, string staffHireDate, bool staffIsAdmin, int staffSalary)
+        {
+            return "";
+        }
     }
 }
