@@ -90,5 +90,26 @@ namespace ClassLibrary
             }
             return "";
         }
+        public bool Find(int ReceiptID)
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@ReceiptId" , ReceiptID);
+            DB.Execute("sproc_tblReceipt_FilterByReceiptId");
+            if (DB.Count == 1)
+            {
+                ID = Convert.ToInt32(DB.DataTable.Rows[0]["Receipt_ID"]);
+                OrderID = Convert.ToInt32(DB.DataTable.Rows[0]["Order_ID"]);
+                Transation = Convert.ToString(DB.DataTable.Rows[0]["Receipt_Transaction"]);
+                Tax = (float)Convert.ToDouble(DB.DataTable.Rows[0]["Receipt_Tax"]);
+                PaymentMethod = Convert.ToString(DB.DataTable.Rows[0]["Receipt_PaymentMethod"]);
+                TotalPrice = (float)Convert.ToDouble(DB.DataTable.Rows[0]["Receipt_TotalPrice"]);
+                CreatedAt = Convert.ToDateTime(DB.DataTable.Rows[0]["Receipt_createdAt"]);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

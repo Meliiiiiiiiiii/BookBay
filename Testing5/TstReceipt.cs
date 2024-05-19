@@ -7,7 +7,7 @@ namespace Testing5
     [TestClass]
     public class TstReceipt
     {
-        private int receiptID = 0;
+        private int receiptID = 1;
         private int orderID = 0;
         private string transaction = "5e7bda44-85f7-42d3-a5eb-94d43db2a6bb";
         private float tax = 0.0f;
@@ -86,6 +86,21 @@ namespace Testing5
         }
 
         [TestMethod]
+        public void ReceiptIDFound()
+        {
+            clsReceipt receipt = new clsReceipt();
+            int receiptid = 1;
+            bool ok = false;
+            receipt.Find(receiptID);
+            if(receipt.ID == receiptid)
+            {
+                ok = true;
+            }
+            Assert.IsTrue(ok);
+        }
+
+
+        [TestMethod]
         public void OrderOk()
         {
             clsReceipt receipt = new clsReceipt();
@@ -150,6 +165,20 @@ namespace Testing5
         }
 
         [TestMethod]
+        public void OrderIDFound()
+        {
+            clsReceipt receipt = new clsReceipt();
+            int OrderID = 8;
+            bool ok = false;
+            receipt.Find(receiptID);
+            if (receipt.OrderID == OrderID)
+            {
+                ok = true;
+            }
+            Assert.IsTrue(ok);
+        }
+
+        [TestMethod]
         public void TransactionOk()
         {
             clsReceipt receipt = new clsReceipt();
@@ -181,6 +210,19 @@ namespace Testing5
             transaction = "5e7bda44-85f7-42d3-a5eb-94d43db2a6bb-";
             string error = receipt.Valid(receiptID, orderID, transaction, tax, PaymentMethod, TotalPrice, createdAt);
             Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void TransactionFound()
+        {
+            clsReceipt receipt = new clsReceipt();
+            bool ok = false;
+            receipt.Find(receiptID);
+            if (receipt.Transation == "F59E15E7-ABE3-4AA5-B08C-8A542733209D")
+            {
+                ok = true;
+            }
+            Assert.IsTrue(ok);
         }
 
         [TestMethod]
@@ -253,6 +295,19 @@ namespace Testing5
             tax = 1.701411733e+38f;
             string error = receipt.Valid(receiptID, orderID, transaction, tax, PaymentMethod, TotalPrice, createdAt);
             Assert.AreEqual(error, "");
+        }
+
+        [TestMethod]
+        public void TaxFound()
+        {
+            clsReceipt receipt = new clsReceipt();
+            bool ok = false;
+            receipt.Find(receiptID);
+            if (receipt.Tax == 30)
+            {
+                ok = true;
+            }
+            Assert.IsTrue(ok);
         }
 
         [TestMethod]
@@ -344,6 +399,19 @@ namespace Testing5
         }
 
         [TestMethod]
+        public void PaymentMethodFound()
+        {
+            clsReceipt receipt = new clsReceipt();
+            bool ok = false;
+            receipt.Find(receiptID);
+            if (receipt.PaymentMethod == "Visa")
+            {
+                ok = true;
+            }
+            Assert.IsTrue(ok);
+        }
+
+        [TestMethod]
         public void TotalPriceOk()
         {
             clsReceipt receipt = new clsReceipt();
@@ -414,6 +482,20 @@ namespace Testing5
             Assert.AreEqual(error, "");
         }
 
+
+        [TestMethod]
+        public void TotalPriceFound()
+        {
+            clsReceipt receipt = new clsReceipt();
+            bool ok = false;
+            receipt.Find(receiptID);
+            if (receipt.TotalPrice == 32)
+            {
+                ok = true;
+            }
+            Assert.IsTrue(ok);
+        }
+
         [TestMethod]
         public void CreatedAtOk()
         {
@@ -482,6 +564,28 @@ namespace Testing5
             createdAt = "this is a date string";
             string error = receipt.Valid(receiptID, orderID, transaction, tax, PaymentMethod, TotalPrice, createdAt);
             Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void CreatedAtFound()
+        {
+            clsReceipt receipt = new clsReceipt();
+            bool ok = false;
+
+            // Correctly create a DateTime object for May 16, 2024
+            DateTime expectedDate = new DateTime(2024, 5, 16);
+
+            // Assuming receiptID is defined and available
+            receipt.Find(receiptID);
+
+            // Compare receipt.CreatedAt with the expectedDate
+            if (receipt.CreatedAt == expectedDate)
+            {
+                ok = true;
+            }
+
+            // Assert if the result is as expected
+            Assert.IsTrue(ok);
         }
 
 
