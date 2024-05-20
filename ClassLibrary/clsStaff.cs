@@ -90,7 +90,36 @@ namespace ClassLibrary
 
         public string Valid(int staffId, string staffName, string staffEmail, string staffPhone, string staffHireDate, bool staffIsAdmin, int staffSalary)
         {
-            return "";
+            //create a string variable to store the error
+            String Error = "";
+            //create a temporary
+            DateTime DateTemp;
+            //if the StaffName is blank
+            if (staffName.Length==0)
+            {
+                //record the error
+                Error = Error + "The staff name may not be blank";
+            }
+            //if the staff name is greater than 40 characters
+            if(staffName.Length>40)
+            {
+                //record the error
+                Error = Error + "The staff name must be less than 40 characters";
+            }
+            //copy the dateAdded value to the DateTemp variable
+            DateTemp = Convert.ToDateTime(staffHireDate);
+            //check to see if the date is less than today's date
+            if(DateTemp<DateTime.Now.Date)
+            {
+                Error = Error + "The date cannot be in the past ";
+            }
+            //check to see if the date is greater than today's date
+            if(DateTemp>DateTime.Now.Date) {
+                //record the error
+                Error = Error + "The date cannot be in the future";
+            }
+            //return any error message
+            return Error;
         }
     }
 }
