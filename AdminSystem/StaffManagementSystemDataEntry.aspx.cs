@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -17,22 +18,51 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
        //create anew instance of clsStaff
        clsStaff aStaff = new clsStaff();
+        //capture the ID
+        int Id = Convert.ToInt32(StaffIDtxt.Text);
         //capture the name
-        aStaff.StaffName = NameIDtxt.Text;
+        String Name = NameIDtxt.Text;
         //capture the email
-        aStaff.StaffEmail = Emailtxt.Text;
+        String Email = Emailtxt.Text;
         //capture the phone
-        aStaff.StaffPhone = Phonetxt.Text;
+        String Phone = Phonetxt.Text;
         //capture the hire date
-        aStaff.StaffHireDate = Convert.ToDateTime(DateTime.Now);
+        String HireDate = hiredatetxt.Text;
         //capture the salary
-        aStaff.StaffSalary = Convert.ToInt32(salarytxt.Text);
+        int Salary = Convert.ToInt32(salarytxt.Text);
         //capture the is admin
-        aStaff.StaffIsAdmin = Convert.ToBoolean(IsAdmintxt.Text);
-        //store staff in the session object
-        Session["aStaff"]=aStaff;
-        //navigate to the view page
-        Response.Redirect("StaffManagementSystemViewer.aspx");
+        Boolean IsAdmin = Convert.ToBoolean(IsAdmintxt.Text);
+        //variable to store any error messages
+        String Error = "";
+        //validate data
+        Error = aStaff.Valid(Id, Name, Email, Phone, HireDate, IsAdmin, Salary);
+        if(Error=="")
+        {
+            //capture the staff id
+            aStaff.StaffID = Convert.ToInt32(Id);
+            //capture the staff name
+            aStaff.StaffName = Name;
+            //capture the staff email
+            aStaff.StaffEmail = Email;
+            //capture the staff phone
+            aStaff.StaffPhone = Phone;
+            //capture the staff HireDate
+            aStaff.StaffHireDate =Convert.ToDateTime(HireDate);
+            //capture the staff Salary
+            aStaff.StaffSalary = Salary;
+            //capture the staff Is Admin
+            aStaff.StaffIsAdmin = IsAdmin;
+            //store staff in the session object
+            Session["aStaff"] = aStaff;
+            //navigate to the view page
+            Response.Redirect("StaffManagementSystemViewer.aspx");
+        }
+        else
+        {
+            //display an error message
+            lblError.Text = Error;
+        }
+        
     }
 
 

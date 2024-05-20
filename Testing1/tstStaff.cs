@@ -405,48 +405,10 @@ namespace Testing1
             //test to see that the result is correct 
             Assert.AreNotEqual(Error, "");
         }
+       
+        
         [TestMethod]
-        public void DateAddedExtremeMin()
-        {
-            //create an instance of the class we want to create
-            clsStaff aStaff = new clsStaff();
-            //string variable to store any error message
-            String Error = "";
-            //create a variable to store the test date data
-            DateTime TestDate;
-            //set the date totodays date
-            TestDate = DateTime.Now.Date;
-            //change the date to whatever the date is less 100 years
-            TestDate = TestDate.AddYears(-100);
-            //convert the date variable to a string variable
-            string StaffHiringDate = TestDate.ToString();
-            //invoke the method
-            Error = aStaff.Valid(staffId, staffName, staffEmail, staffPhone, StaffHiringDate, staffIsAdmin, staffSalary);
-            //test to see that the result is correct
-            Assert.AreNotEqual(Error, "");
-        }
-        [TestMethod]
-        public void DateAddedMinLessOne()
-        {
-            //create an instance of the class we want to create
-            clsStaff aStaff = new clsStaff();
-            //string variable to store any error message
-            String Error = "";
-            //create a variable to store the test date data
-            DateTime TestDate;
-            //set the date totodays date
-            TestDate = DateTime.Now.Date;
-            //change the date to whatever the date is less 1 day
-            TestDate = TestDate.AddDays(-1);
-            //convert the date variable to a string variable
-            string StaffHiringDate = TestDate.ToString();
-            //invoke the method
-            Error = aStaff.Valid(staffId, staffName, staffEmail, staffPhone, StaffHiringDate, staffIsAdmin, staffSalary);
-            //test to see that the result is correct
-            Assert.AreNotEqual(Error, "");
-        }
-        [TestMethod]
-        public void DateAddedMin()
+        public void HiringDateMin()
         {
             //create an instance of the class we want to create
             clsStaff aStaff = new clsStaff();
@@ -464,7 +426,7 @@ namespace Testing1
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
-        public void DateAddedMinPlusOne()
+        public void HiringDateMinPlusOne()
         {
             //create an instance of the class we want to create
             clsStaff aStaff = new clsStaff();
@@ -484,7 +446,7 @@ namespace Testing1
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
-        public void DateAddedExtremeMax()
+        public void HiringDateExtremeMax()
         {
             //create an instance of the class we want to create
             clsStaff aStaff = new clsStaff();
@@ -499,6 +461,20 @@ namespace Testing1
             //convert the date variable to a string variabl
             string StaffHiringDate = TestDate.ToString();
             //invoke the method
+            Error = aStaff.Valid(staffId, staffName, staffEmail, staffPhone, StaffHiringDate, staffIsAdmin, staffSalary);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void HiringDateInvalidData()
+        {
+            //create an instance of the class we want to create
+            clsStaff aStaff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //set the hiring date to a non date value
+            string StaffHiringDate = "this is not a date!";
+            //invoke the method 
             Error = aStaff.Valid(staffId, staffName, staffEmail, staffPhone, StaffHiringDate, staffIsAdmin, staffSalary);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");

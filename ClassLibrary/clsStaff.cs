@@ -88,7 +88,7 @@ namespace ClassLibrary
             }
         }
 
-        public string Valid(int staffId, string staffName, string staffEmail, string staffPhone, string staffHireDate, bool staffIsAdmin, int staffSalary)
+        public string Valid(int staffId, string staffName, string staffEmail, string staffPhone, string staffHireDate,bool staffIsAdmin, int staffSalary)
         {
             //create a string variable to store the error
             String Error = "";
@@ -106,17 +106,27 @@ namespace ClassLibrary
                 //record the error
                 Error = Error + "The staff name must be less than 40 characters";
             }
-            //copy the dateAdded value to the DateTemp variable
-            DateTemp = Convert.ToDateTime(staffHireDate);
-            //check to see if the date is less than today's date
-            if(DateTemp<DateTime.Now.Date)
+            //create an instance of datetime to compare with datetemp
+            DateTime DateComp = DateTime.Now.Date;
+            try
             {
-                Error = Error + "The date cannot be in the past ";
+                //copy the dateAdded value to the DateTemp variable
+                DateTemp = Convert.ToDateTime(staffHireDate);
+                //check to see if the date is less than today's date
+                if(DateTemp<DateComp)
+                {
+                    Error = Error + "The date cannot be in the past ";
+                }
+                //check to see if the date is greater than today's date
+                if(DateTemp>DateComp) {
+                    //record the error
+                    Error = Error + "The date cannot be in the future";
+                }
             }
-            //check to see if the date is greater than today's date
-            if(DateTemp>DateTime.Now.Date) {
-                //record the error
-                Error = Error + "The date cannot be in the future";
+            catch
+            {
+                //record the error 
+                Error = Error + "The date is not a valid date";
             }
             //return any error message
             return Error;

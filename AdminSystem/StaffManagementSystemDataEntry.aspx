@@ -12,6 +12,9 @@
         #form {
             height: 617px;
         }
+        #form2 {
+            height: 553px;
+        }
     </style>
 </head>
 <body>
@@ -47,15 +50,24 @@
 <p>
     <asp:TextBox ID="salarytxt" runat="server" height="38px" style="z-index: 1; left: 282px; top: 395px; position: absolute" width="248px" ></asp:TextBox>
     <asp:TextBox ID="IsAdmintxt" runat="server" height="38px" style="z-index: 1; left: 282px; top: 470px; position: absolute" width="248px"></asp:TextBox>
-    <asp:Label ID="IsAdmin" runat="server" height="32px" style="z-index: 1; left: 26px; top: 488px; position: absolute; width: 247px" Text="Is Admin"></asp:Label>
 </p>
 
 <p>
     &nbsp;</p>
-<asp:Button ID="OKbtn" runat="server" OnClick="OKbtn_Click" style="z-index: 1; left: 382px; top: 574px; position: absolute" Text="OK" />
 <p>
     <asp:Label ID="salary" runat="server" height="32px" style="z-index: 1; left: 26px; top: 400px; position: absolute; bottom: 194px; width: 199px" Text="Salary"></asp:Label>
     <asp:Button ID="Cancelbtn" runat="server" style="z-index: 1; top: 572px; position: absolute; left: 488px" Text="Cancel" />
+        </p>
+    <asp:Label ID="IsAdmin" runat="server" style="z-index: 1; left: 14px; top: 482px; position: absolute; width: 247px; height: 18px;" Text="Is Admin"></asp:Label>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 14px; top: 495px; position: absolute; width: 247px; height: 18px;" Text="Label"></asp:Label>
+        </p>
+        <p>
+<asp:Button ID="OKbtn" runat="server" OnClick="OKbtn_Click" style="z-index: 1; left: 382px; top: 574px; position: absolute" Text="OK" />
         </p>
     </form>
 </body>
