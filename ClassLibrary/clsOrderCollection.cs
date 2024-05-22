@@ -6,14 +6,21 @@ namespace ClassLibrary
 
     public class clsOrderCollection
     {
+        List<clsOrder> mOrderList = new List<clsOrder>();
+        clsOrder mThisOrderss = new clsOrder();
         public clsOrderCollection()
         {
-            Int32 Index = 0;
-            Int32 RecordCount = 0;
             clsDataConnection DB = new clsDataConnection();
             DB.Execute("sporc_OrderTable_SelectAll");
+            PopulateArray(DB);
+        }
+        void PopulateArray(clsDataConnection DB)
+        {
+            Int32 Index = 0;
+            Int32 RecordCount;
             RecordCount = DB.Count;
-            while (Index<RecordCount)
+            mOrderList = new List<clsOrder>();
+            while (Index < RecordCount)
             {
                 clsOrder AnOrder = new clsOrder();
                 AnOrder.OrderId = Convert.ToInt32(DB.DataTable.Rows[Index]["Order_ID"]);
@@ -22,10 +29,9 @@ namespace ClassLibrary
                 AnOrder.OrderDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["Order_Date"]);
                 AnOrder.OrderPrice = Convert.ToInt32(DB.DataTable.Rows[Index]["Order_Price"]);
                 AnOrder.OrderStatus = Convert.ToString(DB.DataTable.Rows[Index]["Order_Status"]);
-                mOrderList.Add( AnOrder );
+                mOrderList.Add(AnOrder);
                 Index++;
             }
-
         }
        
 
@@ -33,8 +39,18 @@ namespace ClassLibrary
 
 
 
-        List<clsOrder> mOrderList = new List<clsOrder> ();
-        public clsOrder ThisOrder { get; set; }
+       
+        public clsOrder ThisOrder
+        {
+            get
+            {
+                return mThisOrderss;
+            }
+            set
+            {
+                mThisOrderss = value;
+            }
+        }
         public int Count {
             get 
             {
@@ -56,6 +72,45 @@ namespace ClassLibrary
             }
                 
             }
-        
+
+        public int Add()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@Customer_ID", mThisOrderss.CustomerId);
+            DB.AddParameter("@Book_ID", mThisOrderss.BookId);
+            DB.AddParameter("@Order_Date", mThisOrderss.OrderDate);
+            DB.AddParameter("@Order_Price", mThisOrderss.OrderPrice);
+            DB.AddParameter("@Order_Status", mThisOrderss.OrderStatus);
+            return DB.Execute("sproc_OrderTable_Insert");
+        }
+
+        public void Delete()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@Order_ID", mThisOrderss.OrderId);
+            DB.Execute("sproc_OrderTable_Delete");
+        }
+
+        public void ReportByOrderStatus(string OrderStatus)
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@Order_Status", OrderStatus);
+            DB.Execute("sporc_OrderTableFilterByOrderStatus");
+            PopulateArray(DB);
+            
+        }
+
+        public void Update()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@Order_ID", mThisOrderss.OrderId);
+            DB.AddParameter("@Customer_ID", mThisOrderss.CustomerId);
+            DB.AddParameter("@Book_ID", mThisOrderss.BookId);
+            DB.AddParameter("@Order_Date", mThisOrderss.OrderDate);
+            DB.AddParameter("@Order_Price", mThisOrderss.OrderPrice);
+            DB.AddParameter("@Order_Status", mThisOrderss.OrderStatus);
+             DB.Execute("sproc_OrderTable_Update");
+
+        }
     }
 }

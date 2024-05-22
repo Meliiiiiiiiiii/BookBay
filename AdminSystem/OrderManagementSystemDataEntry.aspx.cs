@@ -8,9 +8,18 @@ using System.Web.UI.WebControls;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 OrderId;
     protected void Page_Load(object sender, EventArgs e)
     {
+        OrderId = Convert.ToInt32(Session["Order_ID"]);
+        if (IsPostBack == false)
+        {
+            if (OrderId!=1)
+            {
+                DisplayOrders();
+            }
 
+        }
     }
 
     protected void OKbtn_Click(object sender, EventArgs e)
@@ -27,11 +36,27 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Error = AnOrder.Valid(OrderPricee, OrderStatuss, OrderDatee);
         if (Error == "")
         {
+            AnOrder.OrderId = OrderId;
+            AnOrder.CustomerId = Convert.ToInt32(CustomerID);
+            AnOrder.BookId = Convert.ToInt32(BookID);
             AnOrder.OrderPrice = Convert.ToInt32(OrderPricee);
             AnOrder.OrderStatus = OrderStatuss;
             AnOrder.OrderDate = Convert.ToDateTime(OrderDatee);
-            Session["AnOrder"] = AnOrder;
-            Response.Redirect("1Viewer.aspx");
+           clsOrderCollection AllOrders =  new clsOrderCollection();
+            if (OrderId==-1)
+            {
+                AllOrders.ThisOrder = AnOrder;
+                AllOrders.Add();
+
+            }
+            else
+            {
+                AllOrders.ThisOrder.Find(OrderId);
+                AllOrders.ThisOrder=AnOrder;
+                AllOrders.Update();
+            }
+            
+            Response.Redirect("OrderManagementSystemList.aspx");
         }
         else
         {
@@ -55,5 +80,17 @@ public partial class _1_DataEntry : System.Web.UI.Page
             OrderStatustxt.Text = AnOrder.OrderStatus;
 
         }
+        
+    }
+    void DisplayOrders()
+    {
+        clsOrderCollection AllOrders = new clsOrderCollection();
+        AllOrders.ThisOrder.Find(OrderId);
+        OrderIDtxt.Text = AllOrders.ThisOrder.OrderId.ToString();
+        CustomerIDtxt.Text = AllOrders.ThisOrder.CustomerId.ToString();
+        BookIDtxt.Text = AllOrders.ThisOrder.BookId.ToString();
+        OrderDatetxt.Text = AllOrders.ThisOrder.OrderDate.ToString();
+        orderpricetxt.Text = AllOrders.ThisOrder.OrderPrice.ToString();
+        OrderStatustxt.Text = AllOrders.ThisOrder.OrderStatus;
     }
 }

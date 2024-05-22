@@ -32,10 +32,10 @@
 <p>
     <asp:Label ID="Label1" runat="server" style="z-index: 1; left: 17px; top: 254px; position: absolute; height: 32px; margin-bottom: 0px" Text="Order Date"></asp:Label>
     <asp:TextBox ID="orderpricetxt" runat="server" height="38px" style="z-index: 1; left: 282px; top: 318px; position: absolute" width="248px"></asp:TextBox>
-    <asp:Label ID="Label2" runat="server" height="32px" style="z-index: 1; left: 18px; top: 329px; position: absolute; width: 247px" Text="Order Price"></asp:Label>
+    <asp:Label ID="Label2" runat="server" height="32px" style="z-index: 1; left: 13px; top: 321px; position: absolute; width: 247px; margin-top: 0px;" Text="Order Price"></asp:Label>
 </p>
 <p>
-    <asp:TextBox ID="OrderStatustxt" runat="server" height="38px" style="z-index: 1; left: 286px; top: 408px; position: absolute" width="248px"></asp:TextBox>
+    <asp:TextBox ID="OrderStatustxt" runat="server" height="38px" style="z-index: 1; left: 284px; top: 409px; position: absolute" width="248px"></asp:TextBox>
 </p>
 <p>
     <asp:Button ID="Cancelbtn" runat="server" style="z-index: 1; top: 487px; position: absolute; left: 312px" Text="Cancel" />
@@ -43,8 +43,8 @@
 <asp:Button ID="OKbtn" runat="server" OnClick="OKbtn_Click" style="z-index: 1; left: 156px; top: 487px; position: absolute" Text="OK" />
 <p>
     <asp:Label ID="Label3" runat="server" height="32px" style="z-index: 1; left: 9px; top: 367px; position: absolute; bottom: 189px; width: 199px" Text="Order Status"></asp:Label>
+        <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 660px; top: 179px; position: absolute" Text="Label"></asp:Label>
         </p>
-<asp:Label ID="lblError" runat="server" Text="Label"></asp:Label>
     </form>
 </body>
 </html>

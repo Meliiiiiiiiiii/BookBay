@@ -125,6 +125,10 @@ namespace ClassLibrary
             {
                 Error = Error + "The value of Order Price cannot be negative";
             }
+            if (orderPrice.Length == 0)
+            {
+                Error = Error + "this may not be blank";
+            }
 
 
 
@@ -141,18 +145,25 @@ namespace ClassLibrary
 
 
 
-
-
-
-            DateTemp = Convert.ToDateTime(orderDate);
-            if (DateTemp < DateTime.Now.Date)
+            DateTime Datecomp = DateTime.Now.Date;
+            try
             {
-                Error = Error + "The date cannot be in the past";
+                DateTemp = Convert.ToDateTime(orderDate);
+                if (DateTemp < Datecomp)
+                {
+                    Error = Error + "The date cannot be in the past";
+                }
+                if (DateTemp > Datecomp)
+                {
+                    Error = Error + "The Date cannot be in the future";
+                }
             }
-            if (DateTemp > DateTime.Now.Date)
+            catch
             {
-                Error = Error + "The Date cannot be in the future";
+                Error = Error + "This is not a date";
             }
+
+           
 
 
 

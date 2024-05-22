@@ -64,6 +64,122 @@ namespace Testing4
             Assert.AreEqual(AllOrders.Count,TestList.Count);
 
         }
-        
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            clsOrder TestOrder = new clsOrder();
+            Int32 PrimaryKey = 0;
+            TestOrder.OrderId = 1;
+            TestOrder.CustomerId = 1;
+            TestOrder.BookId = 1;
+            TestOrder.OrderDate = DateTime.Now;
+            TestOrder.OrderPrice = 1;
+            TestOrder.OrderStatus = "delivered";
+            AllOrders.ThisOrder = TestOrder;
+            PrimaryKey = AllOrders.Add();
+            TestOrder.OrderId = PrimaryKey;
+            AllOrders.ThisOrder.Find(PrimaryKey);
+            Assert.AreEqual(AllOrders.ThisOrder,TestOrder);
+
+
+        }
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            clsOrder TestOrder = new clsOrder();
+            Int32 PrimaryKey = 0;
+            TestOrder.OrderId = 1;
+            TestOrder.CustomerId = 1;
+            TestOrder.BookId = 1;
+            TestOrder.OrderDate = DateTime.Now;
+            TestOrder.OrderPrice = 1;
+            TestOrder.OrderStatus = "delivered";
+            AllOrders.ThisOrder = TestOrder;
+            PrimaryKey = AllOrders.Add();
+            TestOrder.OrderId = PrimaryKey;
+            TestOrder.CustomerId = 2;
+            TestOrder.BookId = 2;
+            TestOrder.OrderDate = DateTime.Now;
+            TestOrder.OrderPrice = 2;
+            TestOrder.OrderStatus = "on the way";
+            AllOrders.ThisOrder = TestOrder;
+            AllOrders.Update();
+            AllOrders.ThisOrder.Find(PrimaryKey);
+            Assert.AreEqual(AllOrders.ThisOrder,TestOrder);
+
+
+
+        }
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            clsOrder TestOrder = new clsOrder();
+            Int32 PrimaryKey = 0;
+            TestOrder.OrderId = 1;
+            TestOrder.CustomerId = 1;
+            TestOrder.BookId = 1;
+            TestOrder.OrderDate = DateTime.Now;
+            TestOrder.OrderPrice = 1;
+            TestOrder.OrderStatus = "delivered";
+            AllOrders.ThisOrder = TestOrder;
+            PrimaryKey = AllOrders.Add();
+            TestOrder.OrderId = PrimaryKey;
+            AllOrders.Delete();
+            Boolean Found = AllOrders.ThisOrder.Find(PrimaryKey);
+            Assert.IsFalse(Found);
+
+        }
+        [TestMethod]
+        public void ReportByOrderStatusMethodOK() 
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            clsOrderCollection FilteredOrder = new clsOrderCollection();
+            FilteredOrder.ReportByOrderStatus("");
+            Assert.AreEqual(AllOrders.Count, FilteredOrder.Count);
+
+        }
+        [TestMethod]
+        public void ReportByOrderStatusNotFound()
+        {
+            clsOrderCollection FilteredOrder = new clsOrderCollection();
+            FilteredOrder.ReportByOrderStatus("xxxxxx");
+            Assert.AreEqual(0, FilteredOrder.Count);
+
+        }
+        [TestMethod]
+        public void ReportByOrderStatusTestDataFound()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+           Boolean OK = true;
+            AllOrders.ReportByOrderStatus("yyyy");
+            if(AllOrders.Count == 2)
+            {
+                if (AllOrders.OrderList[0].OrderId!=36) 
+                {
+                    OK = false;
+                }
+                if (AllOrders.OrderList[1].OrderId != 37)
+                { 
+                     OK = false; 
+                }
+
+            }
+            else
+            {
+                OK= false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+
+
+
+
+
+
+
     }
 }
