@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ClassLibrary;
+using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Testing5
@@ -88,13 +89,13 @@ namespace Testing5
             clsReceipt receipt = new clsReceipt();
             int PrimaryKey = 0;
             receipt.Find(1);
-            
 
             AllReceipts.ThisReceipt = receipt;
 
             PrimaryKey = AllReceipts.Add();
             receipt.ID = PrimaryKey;
             receipt.CreatedAt = DateTime.Now;
+            receipt.Transation = Guid.NewGuid().ToString().ToUpper();
             AllReceipts.ThisReceipt = receipt;
             AllReceipts.Update();
             AllReceipts.ThisReceipt.Find(PrimaryKey);
@@ -117,6 +118,44 @@ namespace Testing5
             AllReceipts.Delete();
             Boolean Found = AllReceipts.ThisReceipt.Find(PrimaryKey);
             Assert.IsFalse(Found);
+        }
+
+        [TestMethod]
+        public void ReportByTransactionMethodOk()
+        {
+            clsReceiptCollection AllReceipt = new clsReceiptCollection();
+            clsReceiptCollection FilteredReceipt = new clsReceiptCollection();
+            FilteredReceipt.ReportByTransaction("");
+            Assert.AreEqual(AllReceipt.Count, FilteredReceipt.Count);
+        }
+
+        [TestMethod]
+        public void ReportByTransactionNoneFound()
+        {
+            clsReceiptCollection FilteredReceipts = new clsReceiptCollection();
+            FilteredReceipts.ReportByTransaction("xxx xxx");
+            Assert.AreEqual(0, FilteredReceipts.Count);
+        }
+
+        [TestMethod]
+        public void ReportByTransactionTestDataFound()
+        {
+            clsReceiptCollection FilteredReceipt = new clsReceiptCollection();
+            Boolean Ok = true;
+            FilteredReceipt.ReportByTransaction("F59E15E7-ABE3-4AA5-B08C-8A542733209D");
+            if(FilteredReceipt.Count == 1)
+            {
+                if (FilteredReceipt.ReceiptList[0].ID != 1)
+                {
+                    Ok = false;
+                }
+            }
+            else
+            {
+                Ok = false;
+            }
+            Assert.IsTrue(Ok);  
+
         }
     }
 }

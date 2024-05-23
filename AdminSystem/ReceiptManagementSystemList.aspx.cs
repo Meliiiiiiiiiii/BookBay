@@ -70,4 +70,25 @@ public partial class _1_List : System.Web.UI.Page
             lblError.Visible = true;
         }
     }
+
+    protected void BtnApplyFilter_Click(object sender, EventArgs e)
+    {
+        clsReceiptCollection receipts = new clsReceiptCollection();
+        receipts.ReportByTransaction(txtTransactionFilter.Text);
+        lstReceiptList.DataSource = receipts.ReceiptList;
+        lstReceiptList.DataValueField = "ID";
+        lstReceiptList.DataTextField = "Transation";
+        lstReceiptList.DataBind();
+    }
+
+    protected void BtnClrFilter_Click(object sender, EventArgs e)
+    {
+        clsReceiptCollection receipts = new clsReceiptCollection();
+        receipts.ReportByTransaction("");
+        txtTransactionFilter.Text = "";
+        lstReceiptList.DataSource = receipts.ReceiptList;
+        lstReceiptList.DataValueField = "ID";
+        lstReceiptList.DataTextField = "Transation";
+        lstReceiptList.DataBind();
+    }
 }

@@ -9,11 +9,21 @@ namespace ClassLibrary
         clsReceipt mThisReceipt = new clsReceipt();
         public clsReceiptCollection()
         {
-            int index = 0;
-            int recordCount = 0;
+
             clsDataConnection DB = new clsDataConnection();
             DB.Execute("sproc_tblReceipt_SelectAll");
+            PopulateArray(DB);
+
+        }
+        
+        void PopulateArray(clsDataConnection DB)
+        {
+            int index = 0;
+            int recordCount = 0;
+
             recordCount = DB.Count;
+
+            mReceiptList = new List<clsReceipt>();
 
             while (index < recordCount)
             {
@@ -28,9 +38,8 @@ namespace ClassLibrary
                 mReceiptList.Add(receipt);
                 index++;
             }
-
         }
-        
+
         public List<clsReceipt> ReceiptList 
         {
             get
@@ -92,6 +101,14 @@ namespace ClassLibrary
             clsDataConnection DB = new clsDataConnection();
             DB.AddParameter("@ReceiptId", mThisReceipt.ID);
             DB.Execute("sproc_tblReceipt_Delete");
+        }
+
+        public void ReportByTransaction(string transaction)
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@Transaction", transaction);
+            DB.Execute("sproc_tblReceipt_FilterByTransaction");
+            PopulateArray(DB);
         }
     }
 }
