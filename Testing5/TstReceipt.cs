@@ -11,7 +11,7 @@ namespace Testing5
         private int orderID = 0;
         private string transaction = "5e7bda44-85f7-42d3-a5eb-94d43db2a6bb";
         private float tax = 0.0f;
-        private string PaymentMethod = "aaa";
+        private string PaymentMethod = "visa";
         private float TotalPrice = 0.0f;
         private string createdAt = DateTime.Now.Date.ToString();
 
@@ -332,7 +332,7 @@ namespace Testing5
         public void PaymentMethodMinLessOne()
         {
             clsReceipt receipt = new clsReceipt();
-            PaymentMethod = "aa";
+            PaymentMethod = "aaa";
             string error = receipt.Valid(receiptID, orderID, transaction, tax, PaymentMethod, TotalPrice, createdAt);
             Assert.AreNotEqual(error, "");
         }
@@ -349,7 +349,7 @@ namespace Testing5
         public void PaymentMethodMinPlusOne()
         {
             clsReceipt receipt = new clsReceipt();
-            PaymentMethod = "aaaa";
+            PaymentMethod = "aaaaa";
             string error = receipt.Valid(receiptID, orderID, transaction, tax, PaymentMethod, TotalPrice, createdAt);
             Assert.AreNotEqual(error, "");
         }
@@ -384,7 +384,7 @@ namespace Testing5
         public void PaymentMethodMid()
         {
             clsReceipt receipt = new clsReceipt();
-            PaymentMethod += "sss";
+            PaymentMethod = "ssssss";
             string error = receipt.Valid(receiptID, orderID, transaction, tax, PaymentMethod, TotalPrice, createdAt);
             Assert.AreEqual(error, "");
         }

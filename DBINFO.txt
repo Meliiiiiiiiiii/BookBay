@@ -1,5 +1,0 @@
-Server name: v00egd00002l.lec-admin.dmu.ac.uk
-Authentication: SQL SERVER Authentication
-User name: p2790115
-Database: p2790115
-Password: TheLibraryTeam123

@@ -4,13 +4,21 @@ namespace ClassLibrary
 {
     public class clsReceipt
     {
-        public int ID { get; set;}
-        public int OrderID { get; set; }
-        public string Transation {  get; set; }
-        public float Tax { get; set; }
-        public string PaymentMethod { get; set; }
-        public float TotalPrice {  get; set; }
-        public DateTime CreatedAt {  get; set; }
+        private int id;
+        private int orderID;
+        private string transaction;
+        private float tax;
+        private string paymentMethod;
+        private float totalPrice;
+        private DateTime createdAt;
+
+        public int ID { get { return id; } set { id = value; } }
+        public int OrderID { get { return orderID; } set { orderID = value; } }
+        public string Transation { get { return transaction; } set { transaction = value; } }
+        public float Tax { get { return tax; } set { tax = value; } }
+        public string PaymentMethod { get { return paymentMethod; } set { paymentMethod = value; } }
+        public float TotalPrice { get { return totalPrice; } set { totalPrice = value; } }
+        public DateTime CreatedAt { get { return createdAt; } set { createdAt = value; } }
         public string Valid(int ReceiptId, int OrderId, string Transaction,float Tax, string PaymentMethod, float TotalPrice, string CreatedAt)
         {
             // receipt validation
@@ -57,7 +65,7 @@ namespace ClassLibrary
             {
                 return "payment Method cannot be empty";
             }
-            else if(!(PaymentMethod.Length == 3|| PaymentMethod.Length == 12 || PaymentMethod.Length == 6))
+            else if(!(PaymentMethod.Length == 4 || PaymentMethod.Length == 12 || PaymentMethod.Length == 6))
             {
                 return "payment Method name is unproper";
             }
@@ -111,5 +119,17 @@ namespace ClassLibrary
                 return false;
             }
         }
+/*        
+        public int Add()
+        {
+            clsDataConnection DB = new clsDataConnection();
+
+            DB.AddParameter("@Tax", this.tax );
+            DB.AddParameter("@PaymentMethod", this.paymentMethod );
+            DB.AddParameter("@TotalPrice", this.totalPrice);
+            DB.AddParameter("@OrderID", this.orderID);
+            return DB.Execute("sproc_tblReceipt_Insert");
+        }*/
+
     }
 }
