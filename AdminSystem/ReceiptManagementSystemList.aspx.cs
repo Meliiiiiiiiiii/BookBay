@@ -14,6 +14,10 @@ public partial class _1_List : System.Web.UI.Page
         {
             DisplayReceipts();
         }
+
+        clsReceiptUser AnUser = new clsReceiptUser();
+        AnUser = (clsReceiptUser)Session["AnUser"];
+        Response.Write("Logged in As : " + AnUser.UserName);
     }
 
     void DisplayReceipts()
@@ -90,5 +94,10 @@ public partial class _1_List : System.Web.UI.Page
         lstReceiptList.DataValueField = "ID";
         lstReceiptList.DataTextField = "Transation";
         lstReceiptList.DataBind();
+    }
+
+    protected void btnReturn_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }

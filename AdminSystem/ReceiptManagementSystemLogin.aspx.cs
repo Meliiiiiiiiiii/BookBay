@@ -37,6 +37,7 @@ public partial class ReceiptManagementSystemLogin : System.Web.UI.Page
         }
         else if(Found == true)
         {
+            Session["AnUser"] = AnUser;
             Response.Redirect("ReceiptManagementSystemList.aspx");
         }
         else if(Found == false)
@@ -44,5 +45,10 @@ public partial class ReceiptManagementSystemLogin : System.Web.UI.Page
             lblError.Text = "Login details are incorrect. Please try again";
         }
         lblError.Visible = true;
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }
