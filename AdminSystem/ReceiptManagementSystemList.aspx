@@ -26,6 +26,7 @@
             <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" style="z-index: 1; left: 30px; top: 540px; position: absolute" Text="Add" />
             <asp:Label ID="Label1" runat="server" style="z-index: 1; left: 32px; top: 612px; position: absolute; height: 20px; width: 146px" Text="Enter a Transaction"></asp:Label>
             <asp:TextBox ID="txtTransactionFilter" runat="server" style="z-index: 1; left: 168px; top: 613px; position: absolute; width: 286px"></asp:TextBox>
+            <asp:Button ID="btnReturn" runat="server" OnClick="btnReturn_Click" style="z-index: 1; left: 442px; top: 672px; position: absolute" Text="Return to Menu" />
         </div>
         
     </form>
