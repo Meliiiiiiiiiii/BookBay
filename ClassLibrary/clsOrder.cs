@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace ClassLibrary
 {
@@ -111,25 +112,44 @@ namespace ClassLibrary
 
 
 
-            if (orderPrice.Length == 0)
-            {
-                Error = Error + " Order Price cannot be blank";
-            }
 
-            orderprice = Convert.ToInt32(orderPrice);
-            if (orderprice >= 2147483647)
-            {
-                Error = Error + "the value of Order price reached on the limit";
-            }
-            if (orderprice < 0)
-            {
-                Error = Error + "The value of Order Price cannot be negative";
-            }
-            if (orderPrice.Length == 0)
-            {
-                Error = Error + "this may not be blank";
-            }
 
+
+
+
+
+
+
+            
+            
+            try 
+            {
+                orderprice = Convert.ToInt32(orderPrice);
+                if (orderprice >= 2147483647)
+                {
+                    Error = Error + "the value of Order price reached on the limit";
+                }
+                if (orderprice < 0)
+                {
+                    Error = Error + "The value of Order Price cannot be negative";
+                }
+                
+
+            }
+            catch
+            {
+                
+                if (orderPrice.Length == 0)
+                {
+                    Error = Error + "Order Price may ni be blank";
+                }
+                if (!Regex.IsMatch(orderPrice, @"^\d+$"))
+                {
+                    Error = Error + "Order Id input can be only number";
+                }
+
+            }
+            
 
 
 
