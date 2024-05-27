@@ -65,6 +65,87 @@ namespace Testing6
         }
 
         [TestMethod]
+        public void FirstName_ExtremeMin()
+        {
+            string testData = "";
+            string expectedResult = "";
+            string actualResult = ValidateSeller(testData, lastName, commission, sales);
+            Assert.AreNotEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void FirstName_MinBoundary()
+        {
+            string testData = "a";
+            string expectedResult = "";
+            string actualResult = ValidateSeller(testData, lastName, commission, sales);
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void FirstName_MinPlus1()
+        {
+            string testData = "ab";
+            string expectedResult = "";
+            string actualResult = ValidateSeller(testData, lastName, commission, sales);
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void FirstName_MaxMinus1()
+        {
+            string testData = new string('a', 49);
+            string expectedResult = "Valid";
+            string actualResult = ValidateSeller(testData, lastName, commission, sales);
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void FirstName_MaxBoundary()
+        {
+            string testData = new string('a', 50);
+            string expectedResult = "Valid";
+            string actualResult = ValidateSeller(testData, lastName, commission, sales);
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void FirstName_MaxPlus1()
+        {
+            string testData = new string('a', 51);
+            string expectedResult = "Error message";
+            string actualResult = ValidateSeller(testData, lastName, commission, sales);
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void FirstName_Mid()
+        {
+            string testData = new string('a', 25);
+            string expectedResult = "Valid";
+            string actualResult = ValidateSeller(testData, lastName, commission, sales);
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void FirstName_ExtremeMax()
+        {
+            string testData = new string('a', 100);
+            string expectedResult = "Error message";
+            string actualResult = ValidateSeller(testData, lastName, commission, sales);
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void FirstName_InvalidDataType()
+        {
+            string testData = "123";
+            string expectedResult = "Error message";
+            string actualResult = ValidateSeller(testData, lastName, commission, sales);
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
         public void LastNameOK()
         {
             clsSeller seller = new clsSeller();
