@@ -23,14 +23,11 @@ public partial class _1_List : System.Web.UI.Page
         clsSellerCollection sellers = new clsSellerCollection();
         lstSellerList.DataSource = sellers.SellerList;
         lstSellerList.DataValueField = "SellerID";
-        lstSellerList.DataTextField = "LastName";
+        lstSellerList.DataTextField = "FirstName";
         lstSellerList.DataBind();
     }
 
-
-
-
-    protected void btnAdd_Click(object sender, EventArgs e)
+    protected void btnAdd_Click1(object sender, EventArgs e)
     {
         Session["SellerId"] = -1;
 
@@ -38,7 +35,7 @@ public partial class _1_List : System.Web.UI.Page
         Response.Redirect("SellerManagementSystemDataEntry.aspx");
     }
 
-    protected void btnEdit_Click(object sender, EventArgs e)
+    protected void btnEdit_Click1(object sender, EventArgs e)
     {
         int SellerID;
         if (lstSellerList.SelectedIndex != -1)
@@ -55,7 +52,7 @@ public partial class _1_List : System.Web.UI.Page
         }
     }
 
-    protected void btnDelete_Click(object sender, EventArgs e)
+    protected void btnDelete_Click1(object sender, EventArgs e)
     {
         int SellerId;
 
@@ -73,28 +70,28 @@ public partial class _1_List : System.Web.UI.Page
         }
     }
 
-    protected void btnFilter_Click(object sender, EventArgs e)
+    protected void btnFilter_Click1(object sender, EventArgs e)
     {
         clsSellerCollection sellers = new clsSellerCollection();
         sellers.ReportByFirstName(txtFirstnameFilter.Text);
         lstSellerList.DataSource = sellers.SellerList;
         lstSellerList.DataValueField = "SellerID";
-        lstSellerList.DataTextField = "LastName";
+        lstSellerList.DataTextField = "FirstName";
         lstSellerList.DataBind();
     }
 
-    protected void btnClear_Click(object sender, EventArgs e)
+    protected void btnClear_Click1(object sender, EventArgs e)
     {
         clsSellerCollection sellers = new clsSellerCollection();
         sellers.ReportByFirstName("");
         txtFirstnameFilter.Text = "";
         lstSellerList.DataSource = sellers.SellerList;
         lstSellerList.DataValueField = "SellerID";
-        lstSellerList.DataTextField = "LastName";
+        lstSellerList.DataTextField = "FirstName";
         lstSellerList.DataBind();
     }
 
-    protected void btnReturn_Click(object sender, EventArgs e)
+    protected void btnReturn_Click1(object sender, EventArgs e)
     {
         Response.Redirect("TeamMainMenu.aspx");
     }

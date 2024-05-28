@@ -1,69 +1,159 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using ClassLibrary;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Testing6
 {
-    /// <summary>
-    /// Description résumée pour TstSellerCollection
-    /// </summary>
+
     [TestClass]
     public class TstSellerCollection
     {
-        public TstSellerCollection()
+        [TestMethod]
+        public void InstanceOk()
         {
-            //
-            // TODO: ajoutez ici la logique du constructeur
-            //
+            clsSellerCollection AllSeller = new clsSellerCollection();
+
+            Assert.IsNotNull(AllSeller);
         }
-
-        private TestContext testContextInstance;
-
-        /// <summary>
-        ///Obtient ou définit le contexte de test qui fournit
-        ///des informations sur la série de tests active, ainsi que ses fonctionnalités.
-        ///</summary>
-        public TestContext TestContext
-        {
-            get
-            {
-                return testContextInstance;
-            }
-            set
-            {
-                testContextInstance = value;
-            }
-        }
-
-        #region Attributs de tests supplémentaires
-        //
-        // Vous pouvez utiliser les attributs supplémentaires suivants lorsque vous écrivez vos tests :
-        //
-        // Utilisez ClassInitialize pour exécuter du code avant d'exécuter le premier test de la classe
-        // [ClassInitialize()]
-        // public static void MyClassInitialize(TestContext testContext) { }
-        //
-        // Utilisez ClassCleanup pour exécuter du code une fois que tous les tests d'une classe ont été exécutés
-        // [ClassCleanup()]
-        // public static void MyClassCleanup() { }
-        //
-        // Utilisez TestInitialize pour exécuter du code avant d'exécuter chaque test 
-        // [TestInitialize()]
-        // public void MyTestInitialize() { }
-        //
-        // Utilisez TestCleanup pour exécuter du code après que chaque test a été exécuté
-        // [TestCleanup()]
-        // public void MyTestCleanup() { }
-        //
-        #endregion
 
         [TestMethod]
-        public void TestMethod1()
+        public void FirstNameListOk()
         {
-            //
-            // TODO: ajoutez ici la logique du test
-            //
+            clsSellerCollection AllSeller = new clsSellerCollection();
+            List<clsSeller> TestList = new List<clsSeller>();
+            clsSeller seller = new clsSeller();
+
+            seller.Find(1);
+            seller.CreatedAt = DateTime.Now;
+            TestList.Add(seller);
+            AllSeller.SellerList = TestList;
+            Assert.AreEqual(AllSeller.SellerList, TestList);
+        }
+
+        [TestMethod]
+        public void ThisSellerPropertyOk()
+        {
+            clsSellerCollection AllSeller = new clsSellerCollection();
+            clsSeller seller = new clsSeller();
+            seller.Find(1);
+            seller.CreatedAt = DateTime.Now;
+            AllSeller.ThisSeller = seller;
+            Assert.AreEqual(seller, AllSeller.ThisSeller);
+        }
+
+        [TestMethod]
+        public void ListAndCountOk()
+        {
+            clsSellerCollection AllSeller = new clsSellerCollection();
+            List<clsSeller> TestList = new List<clsSeller>();
+            clsSeller seller = new clsSeller();
+
+            seller.Find(1);
+            seller.CreatedAt = DateTime.Now;
+            TestList.Add(seller);
+            AllSeller.SellerList = TestList;
+            Assert.AreEqual(AllSeller.Count, TestList.Count);
+        }
+
+        [TestMethod]
+        public void AddMethodOk()
+        {
+            clsSellerCollection AllSeller = new clsSellerCollection();
+            clsSeller seller = new clsSeller();
+
+            int PrimaryKey = 0;
+
+            seller.Find(1);
+            seller.CreatedAt = DateTime.Now;
+
+            AllSeller.ThisSeller = seller;
+
+            PrimaryKey = AllSeller.Add();
+
+            seller.SellerID = PrimaryKey;
+
+            AllSeller.ThisSeller.Find(PrimaryKey);
+
+            Assert.AreEqual(AllSeller.ThisSeller, seller);
+
+        }
+
+        [TestMethod]
+        public void UpdatedMethodOk()
+        {
+            clsSellerCollection AllSeller = new clsSellerCollection();
+            clsSeller seller = new clsSeller();
+            int PrimaryKey = 0;
+            seller.Find(1);
+
+            AllSeller.ThisSeller = seller;
+
+            PrimaryKey = AllSeller.Add();
+            seller.SellerID = PrimaryKey;
+            seller.CreatedAt = DateTime.Now;
+            seller.LastName = "Muneebs";
+            AllSeller.ThisSeller = seller;
+            AllSeller.Update();
+            AllSeller.ThisSeller.Find(PrimaryKey);
+
+            Assert.AreEqual(AllSeller.ThisSeller, seller);
+        }
+
+        [TestMethod]
+        public void DeleteMethodOk()
+        {
+            clsSellerCollection AllSeller = new clsSellerCollection();
+            clsSeller seller = new clsSeller();
+            int PrimaryKey = 0;
+            seller.Find(1);
+            seller.CreatedAt = DateTime.Now;
+            AllSeller.ThisSeller = seller;
+            PrimaryKey = AllSeller.Add();
+            seller.SellerID = PrimaryKey;
+            AllSeller.ThisSeller.Find(PrimaryKey);
+            AllSeller.Delete();
+            Boolean Found = AllSeller.ThisSeller.Find(PrimaryKey);
+            Assert.IsFalse(Found);
+        }
+
+        [TestMethod]
+        public void ReportByFirstNameMethodOk()
+        {
+            clsSellerCollection AllSeller = new clsSellerCollection();
+            clsSellerCollection FilteredSeller = new clsSellerCollection();
+            FilteredSeller.ReportByFirstName("");
+            Assert.AreEqual(AllSeller.Count, FilteredSeller.Count);
+        }
+
+        [TestMethod]
+        public void ReportByFirstNameNoneFound()
+        {
+            clsSellerCollection FilteredSeller = new clsSellerCollection();
+            FilteredSeller.ReportByFirstName("xxx xxx");
+            Assert.AreEqual(0, FilteredSeller.Count);
+        }
+
+        [TestMethod]
+        public void ReportByFirstNameTestDataFound()
+        {
+            clsSellerCollection FilteredSeller = new clsSellerCollection();
+            Boolean Ok = true;
+            FilteredSeller.ReportByFirstName("muneeb968");
+            if (FilteredSeller.Count == 1)
+            {
+                if (FilteredSeller.SellerList[0].SellerID != 1)
+                {
+                    Ok = false;
+                }
+            }
+            else
+            {
+                Ok = false;
+            }
+            Assert.IsTrue(Ok);
+
         }
     }
 }

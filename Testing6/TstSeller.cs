@@ -12,34 +12,13 @@ namespace Testing6
     {
         private int sellerID = 1;
         private string firstName = "Muneeb";
-        private string lastName  = "Muneeb",
+        private string lastName = "Muneeb";
         private Boolean isActive = true;
         private float commission = 3.3f;
-        private float sales = 20.80f
-        private DateTime createdAt = DateTime.Now.Date.toString();
+        private float sales = 20.82f;
+        private DateTime createdAt = DateTime.Now.Date;
+        private clsSeller seller = new clsSeller();
 
-
-        #region Attributs de tests supplémentaires
-        //
-        // Vous pouvez utiliser les attributs supplémentaires suivants lorsque vous écrivez vos tests :
-        //
-        // Utilisez ClassInitialize pour exécuter du code avant d'exécuter le premier test de la classe
-        // [ClassInitialize()]
-        // public static void MyClassInitialize(TestContext testContext) { }
-        //
-        // Utilisez ClassCleanup pour exécuter du code une fois que tous les tests d'une classe ont été exécutés
-        // [ClassCleanup()]
-        // public static void MyClassCleanup() { }
-        //
-        // Utilisez TestInitialize pour exécuter du code avant d'exécuter chaque test 
-        // [TestInitialize()]
-        // public void MyTestInitialize() { }
-        //
-        // Utilisez TestCleanup pour exécuter du code après que chaque test a été exécuté
-        // [TestCleanup()]
-        // public void MyTestCleanup() { }
-        //
-        #endregion
 
         [TestMethod]
         public void InstanceOK()
@@ -67,82 +46,74 @@ namespace Testing6
         [TestMethod]
         public void FirstName_ExtremeMin()
         {
-            string testData = "";
+            
+            firstName = "";
             string expectedResult = "";
-            string actualResult = ValidateSeller(testData, lastName, commission, sales);
+            string actualResult = seller.Valid(sellerID,firstName, lastName,isActive, commission, sales, createdAt.ToString());
             Assert.AreNotEqual(expectedResult, actualResult);
         }
 
         [TestMethod]
         public void FirstName_MinBoundary()
         {
-            string testData = "a";
+            firstName = "a";
             string expectedResult = "";
-            string actualResult = ValidateSeller(testData, lastName, commission, sales);
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
             Assert.AreEqual(expectedResult, actualResult);
         }
 
         [TestMethod]
         public void FirstName_MinPlus1()
         {
-            string testData = "ab";
+            firstName= "ab";
             string expectedResult = "";
-            string actualResult = ValidateSeller(testData, lastName, commission, sales);
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
             Assert.AreEqual(expectedResult, actualResult);
         }
 
         [TestMethod]
         public void FirstName_MaxMinus1()
         {
-            string testData = new string('a', 49);
-            string expectedResult = "Valid";
-            string actualResult = ValidateSeller(testData, lastName, commission, sales);
+            firstName = new string('a', 49);
+            string expectedResult = "";
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
             Assert.AreEqual(expectedResult, actualResult);
         }
 
         [TestMethod]
         public void FirstName_MaxBoundary()
         {
-            string testData = new string('a', 50);
-            string expectedResult = "Valid";
-            string actualResult = ValidateSeller(testData, lastName, commission, sales);
+            firstName = new string('a', 50);
+            string expectedResult = "";
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
             Assert.AreEqual(expectedResult, actualResult);
         }
 
         [TestMethod]
         public void FirstName_MaxPlus1()
         {
-            string testData = new string('a', 51);
-            string expectedResult = "Error message";
-            string actualResult = ValidateSeller(testData, lastName, commission, sales);
-            Assert.AreEqual(expectedResult, actualResult);
+            firstName = new string('a', 51);
+            string expectedResult = "";
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreNotEqual(expectedResult, actualResult);
         }
 
         [TestMethod]
         public void FirstName_Mid()
         {
-            string testData = new string('a', 25);
-            string expectedResult = "Valid";
-            string actualResult = ValidateSeller(testData, lastName, commission, sales);
+            firstName = new string('a', 25);
+            string expectedResult = "";
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
             Assert.AreEqual(expectedResult, actualResult);
         }
 
         [TestMethod]
         public void FirstName_ExtremeMax()
         {
-            string testData = new string('a', 100);
-            string expectedResult = "Error message";
-            string actualResult = ValidateSeller(testData, lastName, commission, sales);
-            Assert.AreEqual(expectedResult, actualResult);
-        }
-
-        [TestMethod]
-        public void FirstName_InvalidDataType()
-        {
-            string testData = "123";
-            string expectedResult = "Error message";
-            string actualResult = ValidateSeller(testData, lastName, commission, sales);
-            Assert.AreEqual(expectedResult, actualResult);
+            firstName= new string('a', 100);
+            string expectedResult = "";
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreNotEqual(expectedResult, actualResult);
         }
 
         [TestMethod]
@@ -151,6 +122,79 @@ namespace Testing6
             clsSeller seller = new clsSeller();
             seller.LastName = lastName;
             Assert.AreEqual(seller.LastName, lastName);
+        }
+
+        [TestMethod]
+        public void LastName_ExtremeMin()
+        {
+
+            lastName = "";
+            string expectedResult = "";
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreNotEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void LastName_MinBoundary()
+        {
+            lastName = "a";
+            string expectedResult = "";
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void LastName_MinPlus1()
+        {
+            lastName = "ab";
+            string expectedResult = "";
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void LastName_MaxMinus1()
+        {
+            lastName = new string('a', 49);
+            string expectedResult = "";
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void LastName_MaxBoundary()
+        {
+            lastName = new string('a', 50);
+            string expectedResult = "";
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void LastName_MaxPlus1()
+        {
+            lastName = new string('a', 51);
+            string expectedResult = "";
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreNotEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void LastName_Mid()
+        {
+            lastName = new string('a', 25);
+            string expectedResult = "";
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void LastName_ExtremeMax()
+        {
+            lastName = new string('a', 100);
+            string expectedResult = "";
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreNotEqual(expectedResult, actualResult);
         }
 
         [TestMethod]
@@ -170,11 +214,193 @@ namespace Testing6
         }
 
         [TestMethod]
+        public void Commission_ExtremeMin()
+        {
+            commission = -100.00f;
+            string expectedResult = "";
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreNotEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void Commission_MinMinus1()
+        {
+            commission = -0.01f;
+            string expectedResult = "";
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreNotEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void Commission_MinBoundary()
+        {
+            commission = 0.00f;
+            string expectedResult = "";
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void Commission_MinPlus1()
+        {
+            commission = 0.01f;
+            string expectedResult = "";
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void Commission_MaxMinus1()
+        {
+            commission = 99.99f;
+            string expectedResult = "";
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void Commission_MaxBoundary()
+        {
+            commission = 100.00f;
+            string expectedResult = "";
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void Commission_MaxPlus1()
+        {
+            commission = 100.01f;
+            string expectedResult = "";
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreNotEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void Commission_Mid()
+        {
+            commission = 50.00f;
+            string expectedResult = "";
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void Commission_ExtremeMax()
+        {
+            commission = 1000.00f;
+            string expectedResult = "";
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreNotEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void Commission_InvalidDataType()
+        {
+            commission = -1f;
+            string expectedResult = "";
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreNotEqual(expectedResult, actualResult);
+        }
+
+
+        [TestMethod]
         public void SalesOk()
         {
             clsSeller seller = new clsSeller();
             seller.Sales = sales;
             Assert.AreEqual(seller.Sales, sales);
+        }
+
+
+        [TestMethod]
+        public void Sales_ExtremeMin()
+        {
+            sales = -1000000.00f;
+            string expectedResult = "";
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreNotEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void Sales_MinMinus1()
+        {
+            sales = -0.01f;
+            string expectedResult = "";
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreNotEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void Sales_MinBoundary()
+        {
+            sales = 0.00f;
+            string expectedResult = "";
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void Sales_MinPlus1()
+        {
+            sales = 0.01f;
+            string expectedResult = "";
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void Sales_MaxMinus1()
+        {
+            sales = 999999.99f;
+            string expectedResult = "";
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void Sales_MaxBoundary()
+        {
+            sales = 1000000.00f;
+            string expectedResult = "";
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void Sales_MaxPlus1()
+        {
+            sales = 1000001.00f;
+            string expectedResult = "";
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreNotEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void Sales_Mid()
+        {
+            sales = 500000.00f;
+            string expectedResult = "";
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void Sales_ExtremeMax()
+        {
+            sales = 10000000.00f;
+            string expectedResult = "";
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreNotEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void Sales_InvalidDataType()
+        {
+            sales = -1f;
+            string expectedResult = "";
+            string actualResult = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreNotEqual(expectedResult, actualResult);
         }
 
         [TestMethod]
@@ -184,5 +410,145 @@ namespace Testing6
             seller.CreatedAt = createdAt;
             Assert.AreEqual(seller.CreatedAt, createdAt);
         }
+        [TestMethod]
+        public void CreatedAtExtremeMin()
+        {
+            var date = DateTime.Now.Date;
+            date = date.AddYears(-100);
+            createdAt = date;
+            string error = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void CreatedAtMinLessOne()
+        {
+            var date = DateTime.Now.Date;
+            date = date.AddDays(-1);
+            createdAt = date;
+            string error = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void CreatedAtMin()
+        {
+            string error = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreEqual(error, "");
+        }
+
+        [TestMethod]
+        public void CreatedAtMinPlusOne()
+        {
+            var date = DateTime.Now.Date;
+            date = date.AddDays(+1);
+            createdAt = date;
+            string error = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void CreatedAtExtremeMax()
+        {
+            var date = DateTime.Now.Date;
+            date = date.AddYears(+100);
+            createdAt = date;
+            string error = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void CreatedAtInvalidData()
+        {
+            string createdAtstring = "this is a date string";
+            string error = seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAtstring);
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void ValidOK()
+        {
+           seller.Valid(sellerID, firstName, lastName, isActive, commission, sales, createdAt.ToString());
+        }
+
+
+        [TestMethod]
+        public void FirstNameFound()
+        {
+            clsSeller seller = new clsSeller();
+            bool ok = false;
+            seller.Find(sellerID);
+            if (seller.FirstName == "Muneeb")
+            {
+                ok = true;
+            }
+            Assert.IsTrue(ok);
+        }
+
+        [TestMethod]
+        public void LastNameFound()
+        {
+            clsSeller seller = new clsSeller();
+            bool ok = false;
+            seller.Find(sellerID);
+            if (seller.LastName == "Muneeb")
+            {
+                ok = true;
+            }
+            Assert.IsTrue(ok);
+        }
+
+        [TestMethod]
+        public void CommissionFound()
+        {
+            clsSeller seller = new clsSeller();
+            bool ok = false;
+            seller.Find(sellerID);
+            if (seller.Commission == 3.3f)
+            {
+                ok = true;
+            }
+            Assert.IsTrue(ok);
+        }
+
+        [TestMethod]
+        public void SalesFound()
+        {
+            clsSeller seller = new clsSeller();
+            bool ok = false;
+            seller.Find(sellerID);
+            if (seller.Sales == 20.80f)
+            {
+                ok = true;
+            }
+            Assert.IsTrue(ok);
+        }
+
+        [TestMethod]
+        public void IsActiveFound()
+        {
+            clsSeller seller = new clsSeller();
+            bool ok = false;
+            seller.Find(sellerID);
+            if (seller.IsActive == true)
+            {
+                ok = true;
+            }
+            Assert.IsTrue(ok);
+        }
+
+        [TestMethod]
+        public void CreatedAtFound()
+        {
+            clsSeller seller = new clsSeller();
+            bool ok = false;
+            seller.Find(sellerID);
+            if (seller.CreatedAt == new DateTime(2024, 5, 28))
+            {
+                ok = true;
+            }
+            Assert.IsTrue(ok);
+        }
     }
 }
+

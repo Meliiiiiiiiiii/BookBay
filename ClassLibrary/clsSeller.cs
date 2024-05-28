@@ -32,25 +32,22 @@ namespace ClassLibrary
                 return "SellerID cannot be 0 or negative number ";
             }
             // Validate FirstName
-            if (string.IsNullOrEmpty(firstName))
-                return "Error message";
-            if (firstName.Length < 1 || firstName.Length > 50)
-                return "Error message";
+            if (string.IsNullOrEmpty(firstname))
+                return "FirstName cannot be null or empty";
+            if (firstname.Length < 1 || firstname.Length > 50)
+                return "FirstName must be between 1 and 50 characters";
             // Validate LastName
-            if (string.IsNullOrEmpty(lastName))
-                return "Error message";
-            if (lastName.Length < 1 || lastName.Length > 50)
-                return "Error message";
+            if (string.IsNullOrEmpty(lastname))
+                return "LastName cannot be null or empty";
+            if (lastname.Length < 1 || lastname.Length > 50)
+                return "LastName must be between 1 and 50 characters";
             // Validate Commission
             if (commission < 0.00f || commission > 100.00f)
-                return "Error message";
-            if (commission != Math.Round(commission, 2))
-                return "Error message";
+                return "Commission must be between 0.00 and 100.00";
             // Validate Sales
             if (sales < 0.00f || sales > 1000000.00f)
-                return "Error message";
-            if (sales != Math.Round(sales, 2))
-                return "Error message";
+                return "Sales must be between 0.00 and 1,000,000.00";
+
             try
             {
                 DateTime currentDate = DateTime.Now.Date;
