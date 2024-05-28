@@ -25,7 +25,7 @@
             <asp:TextBox ID="txtLastName" runat="server" style="z-index: 1; left: 332px; top: 169px; position: absolute"></asp:TextBox>
             <asp:TextBox ID="txtCommission" runat="server" style="z-index: 1; left: 330px; top: 220px; position: absolute"></asp:TextBox>
             <asp:TextBox ID="txtCreatedAt" runat="server" style="z-index: 1; left: 330px; top: 346px; position: absolute"></asp:TextBox>
-            <asp:TextBox ID="txtSellerID" runat="server" style="z-index: 1; left: 330px; top: 57px; position: absolute; bottom: 812px"></asp:TextBox>
+            <asp:TextBox ID="txtSellerID" runat="server" style="z-index: 1; left: 332px; top: 60px; position: absolute"></asp:TextBox>
         </div>
     </form>
 </body>

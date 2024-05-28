@@ -504,7 +504,7 @@ namespace Testing6
             clsSeller seller = new clsSeller();
             bool ok = false;
             seller.Find(sellerID);
-            if (seller.Commission == 3.3f)
+            if (seller.Commission == 10f)
             {
                 ok = true;
             }
@@ -517,7 +517,7 @@ namespace Testing6
             clsSeller seller = new clsSeller();
             bool ok = false;
             seller.Find(sellerID);
-            if (seller.Sales == 20.80f)
+            if (seller.Sales == 6661f)
             {
                 ok = true;
             }

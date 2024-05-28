@@ -27,14 +27,6 @@ public partial class _1_List : System.Web.UI.Page
         lstSellerList.DataBind();
     }
 
-    protected void btnAdd_Click1(object sender, EventArgs e)
-    {
-        Session["SellerId"] = -1;
-
-        //redirect to the Receipt data Entry
-        Response.Redirect("SellerManagementSystemDataEntry.aspx");
-    }
-
     protected void btnEdit_Click1(object sender, EventArgs e)
     {
         int SellerID;
@@ -94,5 +86,13 @@ public partial class _1_List : System.Web.UI.Page
     protected void btnReturn_Click1(object sender, EventArgs e)
     {
         Response.Redirect("TeamMainMenu.aspx");
+    }
+
+    protected void BtnAdd_Click(object sender, EventArgs e)
+    {
+        Session["SellerId"] = -1;
+
+        //redirect to the Receipt data Entry
+        Response.Redirect("SellerManagementSystemDataEntry.aspx");
     }
 }

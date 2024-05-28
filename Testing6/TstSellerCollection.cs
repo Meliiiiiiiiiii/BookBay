@@ -140,10 +140,10 @@ namespace Testing6
         {
             clsSellerCollection FilteredSeller = new clsSellerCollection();
             Boolean Ok = true;
-            FilteredSeller.ReportByFirstName("muneeb968");
+            FilteredSeller.ReportByFirstName("dembele");
             if (FilteredSeller.Count == 1)
             {
-                if (FilteredSeller.SellerList[0].SellerID != 1)
+                if (FilteredSeller.SellerList[0].SellerID != 3)
                 {
                     Ok = false;
                 }

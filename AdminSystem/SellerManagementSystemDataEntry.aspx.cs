@@ -62,7 +62,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
             clsSellerCollection sellerCollection = new clsSellerCollection();
 
-            if(sellerID == -1)
+            if(SellerID == -1)
             {
                 sellerCollection.ThisSeller = seller;
                 sellerCollection.Add();
@@ -89,6 +89,25 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnFind_Click(object sender, EventArgs e)
     {
+        int sellerID = Convert.ToInt32(txtSellerID.Text);
 
+        clsSeller seller = new clsSeller();
+
+        bool result = seller.Find(sellerID);
+
+        if (result)
+        {
+            txtSellerID.Text = Convert.ToString(seller.SellerID);
+            txtFirstName.Text = seller.FirstName;
+            txtLastName.Text = seller.LastName;
+            txtCommission.Text = Convert.ToString((float) (seller.Commission));
+            txtSales.Text = Convert.ToString((float) (seller.Sales));
+            txtCreatedAt.Text = Convert.ToString(seller.CreatedAt);
+            boxIsActive.Checked = seller.IsActive;
+        }
+        else
+        {
+            lblError.Text = "User ID Not Find";
+        }
     }
 }
