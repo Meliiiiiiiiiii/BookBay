@@ -2,24 +2,45 @@
 
 <!DOCTYPE html>
 
+
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    <style type="text/css">
-        #form1 {
-            height: 638px;
+    <style>
+        .Header{
+            text-align:center;
+        }
+        .menu{
+            margin-top:50px;
+            height: 303px;
         }
     </style>
 </head>
-<body style="height: 637px">
+   
+<body>
     <form id="form1" runat="server">
-        <asp:Label ID="Label1" runat="server" style="z-index: 1; left: 508px; top: 201px; position: absolute" Text="Menu Page"></asp:Label>
-        <asp:Button ID="btnReceipt" runat="server" OnClick="Button1_Click" style="z-index: 1; left: 236px; top: 300px; position: absolute" Text="Receipt" />
-        <asp:Button ID="Button2" runat="server" style="z-index: 1; left: 372px; top: 302px; position: absolute" Text="Staff" />
-        <asp:Button ID="Button3" runat="server" style="z-index: 1; left: 515px; top: 304px; position: absolute" Text="Book" />
-        <asp:Button ID="Button4" runat="server" style="z-index: 1; left: 670px; top: 303px; position: absolute" Text="Customer" />
-        <asp:Button ID="Button5" runat="server" style="z-index: 1; left: 846px; top: 306px; position: absolute" Text="Order" />
-        <asp:Button ID="btnSeller" runat="server" OnClick="btnSeller_Click" style="z-index: 1; left: 975px; top: 308px; position: absolute" Text="Seller" />
+        <div>
+            <div class="Header">
+                <asp:Label ID="Label1" runat="server" Text="BookBay "></asp:Label><br /><br /> 
+                 <asp:Label ID="Label2" runat="server" Text="Book online commerce system "></asp:Label>
+            </div>
+            
+        </div>
+        
+        <div class="menu">
+            <br />
+            <asp:Button ID="Button5" runat="server" style="margin-left: 517px; margin-top: 5px;" Text="Staff Management System " Width="256px" /> 
+            <asp:Button ID="Button6" runat="server" style="z-index: 1; left: 528px; top: 188px; position: absolute; width: 256px" Text="Customer Management System" /> <br />
+            <asp:Button ID="Button7" runat="server" style="z-index: 1; left: 528px; top: 232px; position: absolute; width: 256px" Text="Book Management System" />
+            <br />
+            <asp:Button ID="Button8" runat="server" style="z-index: 1; left: 528px; top: 276px; position: absolute; width: 256px" Text="Order Management System" /><br />
+             <asp:Button ID="Button1" runat="server" style="z-index: 1; left: 528px; top: 276px; position: absolute; width: 256px" Text="Receipt Management System" /><br />
+             <asp:Button ID="Button2" runat="server" style="z-index: 1; left: 528px; top: 276px; position: absolute; width: 256px" Text=" Seller Management System" /><br />
+            
+        </div>
+       
+          
     </form>
 </body>
 </html>
