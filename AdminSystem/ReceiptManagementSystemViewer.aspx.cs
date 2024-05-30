@@ -1,15 +1,19 @@
 ﻿using ClassLibrary;
 using System;
+
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+using System.IdentityModel.Protocols.WSTrust;
+using System.Web.UI.HtmlControls;
+using System.Collections;
+
 
 public partial class _1Viewer : System.Web.UI.Page
 {
+  
     protected void Page_Load(object sender, EventArgs e)
     {
+
         clsOrder Anorder = new clsOrder();
         Anorder = (clsOrder)Session["Anorder"];
         Response.Write(Anorder.OrderId);
@@ -19,5 +23,7 @@ public partial class _1Viewer : System.Web.UI.Page
         Response.Write(Anorder.OrderPrice);
         Response.Write(Anorder.OrderStatus);
 
+
     }
+
 }

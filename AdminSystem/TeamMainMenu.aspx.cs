@@ -11,4 +11,21 @@ public partial class TeamMainMenu : System.Web.UI.Page
     {
 
     }
+
+
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("ReceiptManagementSystemLogin.aspx");
+    }
+
+    protected void btnSeller_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("SellerManagementSystemLogin.aspx");
+    }
+
+    protected void Button5_Click(object sender, EventArgs e)
+    {
+
+    }
 }
