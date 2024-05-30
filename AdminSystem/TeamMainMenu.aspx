@@ -30,13 +30,13 @@
         
         <div class="menu">
             <br />
-            <asp:Button ID="Button5" runat="server" style="margin-left: 517px; margin-top: 5px;" Text="Staff Management System " Width="256px" /> 
-            <asp:Button ID="Button6" runat="server" style="z-index: 1; left: 528px; top: 188px; position: absolute; width: 256px" Text="Customer Management System" /> <br />
-            <asp:Button ID="Button7" runat="server" style="z-index: 1; left: 528px; top: 232px; position: absolute; width: 256px" Text="Book Management System" />
+            <asp:Button runat="server" style="margin-left: 517px; margin-top: 5px;" Text="Staff Management System " Width="256px" /> 
+            <asp:Button  runat="server" style="z-index: 1; left: 528px; top: 188px; position: absolute; width: 256px" Text="Customer Management System" /> <br />
+            <asp:Button  runat="server" style="z-index: 1; left: 528px; top: 232px; position: absolute; width: 256px" Text="Book Management System" />
             <br />
-            <asp:Button ID="Button8" runat="server" style="z-index: 1; left: 528px; top: 276px; position: absolute; width: 256px" Text="Order Management System" /><br />
-             <asp:Button ID="Button1" runat="server" style="z-index: 1; left: 528px; top: 276px; position: absolute; width: 256px" Text="Receipt Management System" /><br />
-             <asp:Button ID="Button2" runat="server" style="z-index: 1; left: 528px; top: 276px; position: absolute; width: 256px" Text=" Seller Management System" /><br />
+            <asp:Button  runat="server" style="z-index: 1; left: 529px; top: 278px; position: absolute; width: 256px" Text="Order Management System" /><br />
+             <asp:Button  runat="server" style="z-index: 1; left: 530px; top: 324px; position: absolute; width: 256px" Text="Receipt Management System" /><br />
+             <asp:Button  runat="server" style="z-index: 1; left: 529px; top: 370px; position: absolute; width: 256px" Text=" Seller Management System" /><br />
             
         </div>
        
