@@ -18,8 +18,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
        //create anew instance of clsStaff
        clsStaff aStaff = new clsStaff();
-        //capture the ID
-        int Id = Convert.ToInt32(StaffIDtxt.Text);
+       
         //capture the name
         String Name = NameIDtxt.Text;
         //capture the email
@@ -35,11 +34,10 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //variable to store any error messages
         String Error = "";
         //validate data
-        Error = aStaff.Valid(Id, Name, Email, Phone, HireDate, IsAdmin, Salary);
+        Error = aStaff.Valid(Name, Email, Phone, HireDate, IsAdmin, Salary);
         if(Error=="")
         {
-            //capture the staff id
-            aStaff.StaffID = Convert.ToInt32(Id);
+            
             //capture the staff name
             aStaff.StaffName = Name;
             //capture the staff email
@@ -52,10 +50,13 @@ public partial class _1_DataEntry : System.Web.UI.Page
             aStaff.StaffSalary = Salary;
             //capture the staff Is Admin
             aStaff.StaffIsAdmin = IsAdmin;
-            //store staff in the session object
-            Session["aStaff"] = aStaff;
+            //create a new instance of the staff collection
+            clsStaffCollection StaffList = new clsStaffCollection();
+            StaffList.ThisStaff= aStaff;
+            //add a new record
+            StaffList.Add();
             //navigate to the view page
-            Response.Redirect("StaffManagementSystemViewer.aspx");
+            Response.Redirect("StaffManagementSystemList.aspx");
         }
         else
         {

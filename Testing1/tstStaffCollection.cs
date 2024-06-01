@@ -20,6 +20,7 @@ namespace Testing1
             //create the item to test data
             clsStaff TestItem = new clsStaff();
             //set its properties
+            TestItem.StaffID = 6;
             TestItem.StaffName = "Assia";
             TestItem.StaffEmail = "Assia@gmail.com";
             TestItem.StaffPhone = "0550115501";
@@ -42,6 +43,7 @@ namespace Testing1
             //create some test data to assign to the property
             clsStaff TestStaff = new clsStaff();
             //assign the data to the property
+            TestStaff.StaffID = 6;
             TestStaff.StaffName = "Assia";
             TestStaff.StaffEmail = "Assia@gmail.com";
             TestStaff.StaffPhone = "0550115501";
@@ -64,6 +66,7 @@ namespace Testing1
             //create an item list
             clsStaff TestItem = new clsStaff();
             //set its properties
+            TestItem.StaffID = 6;
             TestItem.StaffName = "Assia";
             TestItem.StaffEmail = "Assia@gmail.com";
             TestItem.StaffPhone = "0550115501";
@@ -78,6 +81,35 @@ namespace Testing1
             Assert.AreEqual(AllStaff.Count, TestList.Count);    
 
         }
-       
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            //create an instance of the staff collection class
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            //create an item list
+            clsStaff TestItem = new clsStaff();
+            //vaiable to store the primary key
+            int PrimaryKey = 0;
+            //set its properties
+            TestItem.StaffID = 10;
+            TestItem.StaffName = "Melina";
+            TestItem.StaffEmail = "Mel@gmail.com";
+            TestItem.StaffPhone = "0550114444";
+            TestItem.StaffHireDate = DateTime.Now;
+            TestItem.StaffIsAdmin = true;
+            TestItem.StaffSalary = 7000;
+            AllStaff.ThisStaff = TestItem;
+            PrimaryKey = AllStaff.Add();
+            //set thisStaff to the test data
+            TestItem.StaffID=PrimaryKey;
+            //find the record
+            AllStaff.ThisStaff.Find(PrimaryKey);
+            //test if values are equal
+            Assert.AreEqual(AllStaff.ThisStaff, TestItem);
+            // Test if values are equal by comparing properties individually
+            //Assert.AreEqual(AllStaff.ThisStaff, TestItem);
+            
+        }
+
     }
 }

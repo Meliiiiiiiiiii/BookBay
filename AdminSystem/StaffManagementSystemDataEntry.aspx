@@ -62,10 +62,10 @@
         <p>
             &nbsp;</p>
         <p>
-            &nbsp;</p>
-        <p>
-            <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 14px; top: 495px; position: absolute; width: 247px; height: 18px;" Text="Label"></asp:Label>
+            <asp:Label ID="lblError" runat="server" style="z-index: 1;left: 14px; top: 600px; position: absolute; width: 202px; height: 18px;" Text="Label"></asp:Label>
         </p>
+        <p>
+            &nbsp;</p>
         <p>
 <asp:Button ID="OKbtn" runat="server" OnClick="OKbtn_Click" style="z-index: 1; left: 382px; top: 574px; position: absolute" Text="OK" />
         </p>

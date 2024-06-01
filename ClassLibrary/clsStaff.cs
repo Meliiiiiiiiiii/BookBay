@@ -88,7 +88,7 @@ namespace ClassLibrary
             }
         }
 
-        public string Valid(int staffId, string staffName, string staffEmail, string staffPhone, string staffHireDate,bool staffIsAdmin, int staffSalary)
+        public string Valid(string staffName, string staffEmail, string staffPhone, string staffHireDate,bool staffIsAdmin, int staffSalary)
         {
             //create a string variable to store the error
             String Error = "";

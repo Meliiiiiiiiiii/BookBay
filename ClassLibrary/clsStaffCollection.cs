@@ -6,6 +6,10 @@ namespace ClassLibrary
 {
     public class clsStaffCollection
     {
+        //private data membe for the list
+        List<clsStaff> mStaffList = new List<clsStaff>();
+        //private member data for thisStaff
+        clsStaff mThisStaff = new clsStaff();
         public clsStaffCollection()
         {
             //variable for the index
@@ -18,8 +22,9 @@ namespace ClassLibrary
             DB.Execute("sproc_StaffTable_SelectAll");
             //get the count of records
             RecordCount=DB.Count;
+            
             //whilw there are records to process
-            while(Index< RecordCount)
+            while (Index< RecordCount)
             {
                 //create the items of test data
                 clsStaff aStaff = new clsStaff();
@@ -38,7 +43,8 @@ namespace ClassLibrary
             }
             
         }
-        List<clsStaff> mStaffList= new List<clsStaff>();
+       
+
         public List<clsStaff>StaffList
         {
             get
@@ -61,7 +67,33 @@ namespace ClassLibrary
                 //we shall worry about this later
             }
         }
-        public clsStaff ThisStaff { get; set; }
+        public clsStaff ThisStaff 
+        {
+            get
+            {
+                return mThisStaff;
+            }
+            set
+            {
+                mThisStaff = value;
+            }
+        }
+        public int Add()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameers for the stred procedue
+            DB.AddParameter("@Staff_Name", mThisStaff.StaffName);
+            DB.AddParameter("@Staff_Email", mThisStaff.StaffEmail);
+            DB.AddParameter("@Staff_Phone", mThisStaff.StaffPhone);
+            DB.AddParameter("@Staff_Hire_Date", mThisStaff.StaffHireDate);
+            DB.AddParameter("@Staff_Is_Admin", mThisStaff.StaffIsAdmin);
+            DB.AddParameter("@Staff_Salary", mThisStaff.StaffSalary);
+
+            //execute the query returning the primary key value
+            return DB.Execute("sproc_StaffTable_Insert");
+        
+        }
+    
     }
  
 }
