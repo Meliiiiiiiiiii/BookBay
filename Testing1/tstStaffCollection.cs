@@ -86,7 +86,7 @@ namespace Testing1
         {
             //create an instance of the staff collection class
             clsStaffCollection AllStaff = new clsStaffCollection();
-            //create an item list
+            //create an item of test data
             clsStaff TestItem = new clsStaff();
             //vaiable to store the primary key
             int PrimaryKey = 0;
@@ -98,9 +98,11 @@ namespace Testing1
             TestItem.StaffHireDate = DateTime.Now;
             TestItem.StaffIsAdmin = true;
             TestItem.StaffSalary = 7000;
-            AllStaff.ThisStaff = TestItem;
-            PrimaryKey = AllStaff.Add();
             //set thisStaff to the test data
+            AllStaff.ThisStaff = TestItem;
+            //add the record
+            PrimaryKey = AllStaff.Add();
+            //set the primary key to the test data
             TestItem.StaffID=PrimaryKey;
             //find the record
             AllStaff.ThisStaff.Find(PrimaryKey);
@@ -109,6 +111,46 @@ namespace Testing1
             // Test if values are equal by comparing properties individually
             //Assert.AreEqual(AllStaff.ThisStaff, TestItem);
             
+        }
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            //create an instance of the staff collection class
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            //create an item of test data
+            clsStaff TestItem = new clsStaff();
+            //vaiable to store the primary key
+            int PrimaryKey = 0;
+            //set its properties
+            TestItem.StaffID = 10;
+            TestItem.StaffName = "Melina";
+            TestItem.StaffEmail = "Mel@gmail.com";
+            TestItem.StaffPhone = "0550114444";
+            TestItem.StaffHireDate = DateTime.Now;
+            TestItem.StaffIsAdmin = true;
+            TestItem.StaffSalary = 7000;
+            //set thisStaff to the test data
+            AllStaff.ThisStaff = TestItem;
+            //add the record
+            PrimaryKey = AllStaff.Add();
+            //set the primary key to the test data
+            TestItem.StaffID = PrimaryKey;
+            //modify the test record
+            
+            TestItem.StaffName = "Maya";
+            TestItem.StaffEmail = "Meill@gmail.com";
+            TestItem.StaffPhone = "0440114444";
+            TestItem.StaffHireDate = DateTime.Now;
+            TestItem.StaffIsAdmin = false;
+            TestItem.StaffSalary = 9000;
+            //set the record based on the new test data
+            AllStaff.ThisStaff=TestItem;
+            //update the record
+            AllStaff.Update();
+            //find the record
+            AllStaff.ThisStaff.Find(PrimaryKey);
+            //test to see if this address matches the test data
+            Assert.AreEqual(AllStaff.ThisStaff, TestItem);  
         }
 
     }

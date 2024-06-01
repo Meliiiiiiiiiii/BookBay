@@ -56,7 +56,7 @@
     &nbsp;</p>
 <p>
     <asp:Label ID="salary" runat="server" height="32px" style="z-index: 1; left: 26px; top: 400px; position: absolute; bottom: 194px; width: 199px" Text="Salary"></asp:Label>
-    <asp:Button ID="Cancelbtn" runat="server" style="z-index: 1; top: 572px; position: absolute; left: 488px" Text="Cancel" />
+    <asp:Button ID="Cancelbtn" runat="server" style="z-index: 1; top: 572px; position: absolute; left: 488px" Text="Cancel" OnClick="Cancelbtn_Click" />
         </p>
     <asp:Label ID="IsAdmin" runat="server" style="z-index: 1; left: 14px; top: 482px; position: absolute; width: 247px; height: 18px;" Text="Is Admin"></asp:Label>
         <p>

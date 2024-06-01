@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -9,9 +10,22 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 StaffId;
+
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        //get the number of staff to be processed
+        StaffId = Convert.ToInt32(Session["StaffId"]);
+        //if the first time the page is displyaed
+        if (IsPostBack == false)
+        {
+            //if this is not a new record
+            if (StaffId != -1)
+            {
+                //display the current data of the record
+                DisplayStaff();
+            }
+        }
     }
 
     protected void OKbtn_Click(object sender, EventArgs e)
@@ -37,7 +51,8 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Error = aStaff.Valid(Name, Email, Phone, HireDate, IsAdmin, Salary);
         if(Error=="")
         {
-            
+            //capture the staff Id
+            aStaff.StaffID = StaffId;
             //capture the staff name
             aStaff.StaffName = Name;
             //capture the staff email
@@ -52,9 +67,21 @@ public partial class _1_DataEntry : System.Web.UI.Page
             aStaff.StaffIsAdmin = IsAdmin;
             //create a new instance of the staff collection
             clsStaffCollection StaffList = new clsStaffCollection();
-            StaffList.ThisStaff= aStaff;
-            //add a new record
-            StaffList.Add();
+            //if this is a new record
+            if(StaffId==-1)
+            {
+                //set thisStaff property
+                StaffList.ThisStaff=aStaff;
+                //add the new record
+                StaffList.Add();
+            }
+            else
+            {
+                StaffList.ThisStaff.Find(StaffId);
+                StaffList.ThisStaff=aStaff;
+                StaffList.Update();
+            }
+            
             //navigate to the view page
             Response.Redirect("StaffManagementSystemList.aspx");
         }
@@ -96,5 +123,26 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
 
         }
+    }
+    void DisplayStaff()
+    {
+        //create an instance of the staff collection
+        clsStaffCollection Staffinfo = new clsStaffCollection();
+        //find the record to update 
+        Staffinfo.ThisStaff.Find(StaffId);
+        //display the data for the record
+        StaffIDtxt.Text = Staffinfo.ThisStaff.StaffID.ToString();
+        NameIDtxt.Text = Staffinfo.ThisStaff.StaffName;
+        Emailtxt.Text = Staffinfo.ThisStaff.StaffEmail;
+        Phonetxt.Text = Staffinfo.ThisStaff.StaffPhone;
+        hiredatetxt.Text = Staffinfo.ThisStaff.StaffHireDate.ToString();
+        IsAdmintxt.Text = Staffinfo.ThisStaff.StaffIsAdmin.ToString();
+        salarytxt.Text = Staffinfo.ThisStaff.StaffSalary.ToString();
+
+    }
+
+    protected void Cancelbtn_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("StaffManagementSystemList.aspx");
     }
 }
