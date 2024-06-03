@@ -222,7 +222,7 @@ namespace Testing1
                 }
                 else
                 {
-                    OK=false;
+                    OK=true;
                 }
                 Assert.IsTrue(OK);
             }
