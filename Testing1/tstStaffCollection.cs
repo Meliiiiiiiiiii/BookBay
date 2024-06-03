@@ -187,6 +187,46 @@ namespace Testing1
             Assert.IsFalse(Found);
 
         }
+        [TestMethod]
+        public void ReportBySalary()
+        {
+            //create an instance of the staff collection containing unfiltered results 
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            // create an instance of the filtered data 
+            clsStaffCollection FilteredStaff = new clsStaffCollection();
+            int x =0;
+            FilteredStaff.ReportBySalary(x);
+            //test to see that the two values are the same 
+            Assert.AreEqual(0, FilteredStaff.Count);
+        }
+        [TestMethod]
+        public void ReportBySalaryTestDataFound()
+        {
+            //create an instance of the filtered data 
+            clsStaffCollection FilteredStaff = new clsStaffCollection();
+            //variable to store the outcome
+            Boolean OK = true;
+            //apply a salary that doesn't exist 
+            FilteredStaff.ReportBySalary(2000);
+            //check that the correct number of records are found 
+            if(FilteredStaff.Count ==2)
+            {
+                //check to see that the first record is 2 
+                if (FilteredStaff.StaffList[0].StaffID!=2)
+                {
+                    OK = false;
+                }
+                if (FilteredStaff.StaffList[1].StaffID!=43)
+                {
+                    OK = false;
+                }
+                else
+                {
+                    OK=false;
+                }
+                Assert.IsTrue(OK);
+            }
+        }
 
     }
 }
