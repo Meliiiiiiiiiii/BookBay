@@ -154,4 +154,36 @@ namespace Testing1
         }
 
     }
+    [TestMethod]
+    public void DeleteMethodOK()
+    {
+        //create an instance of the staff collection class
+        clsStaffCollection AllStaff = new clsStaffCollection();
+        //create an item of test data
+        clsStaff TestItem = new clsStaff();
+        //vaiable to store the primary key
+        int PrimaryKey = 0;
+        //set its properties
+        TestItem.StaffID = 10;
+        TestItem.StaffName = "Melina";
+        TestItem.StaffEmail = "Mel@gmail.com";
+        TestItem.StaffPhone = "0550114444";
+        TestItem.StaffHireDate = DateTime.Now;
+        TestItem.StaffIsAdmin = true;
+        TestItem.StaffSalary = 7000;
+        //set thisStaff to the test data
+        AllStaff.ThisStaff = TestItem;
+        //add the record
+        PrimaryKey = AllStaff.Add();
+        //set the primary key to the test data
+        TestItem.StaffID = PrimaryKey;
+        //find the record
+        AllStaff.ThisStaff.Find(PrimaryKey);
+        //delete the record
+        AllStaff.Delete();
+        //now find the record
+        Boolean Found = AllStaff.ThisStaff.Find(PrimaryKey);
+        //test to see that the record was not found
+        Assert.IsFalse(Found);
+    }
 }

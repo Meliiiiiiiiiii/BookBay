@@ -13,7 +13,8 @@
         <asp:ListBox ID="lstStaffList" runat="server" Height="331px" Width="356px"></asp:ListBox>
         <p>
             <asp:Button ID="BtnAdd" runat="server" OnClick="BtnAdd_Click" style="margin-left: 36px" Text="Add " />
-            <asp:Button ID="BtnEdit" runat="server" OnClick="BtnEdit_Click" style="margin-left: 111px" Text="Edit" />
+            <asp:Button ID="BtnEdit" runat="server" OnClick="BtnEdit_Click" style="margin-left: 76px" Text="Edit" Width="49px" />
+            <asp:Button ID="BtnDelete" runat="server" OnClick="BtnDelete_Click" style="margin-left: 57px" Text="Delete" />
         </p>
         <p>
             &nbsp;</p>
