@@ -14,6 +14,7 @@
         .menu{
             margin-top:50px;
             height: 303px;
+            padding-left: 600px;
         }
     </style>
 </head>
