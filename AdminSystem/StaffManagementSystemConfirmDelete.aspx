@@ -19,8 +19,8 @@
         </p>
         <p>
             &nbsp;</p>
-        <asp:Button ID="YesBtn" runat="server" OnClick="YesBtn_Click" style="z-index: 1; left: 203px; top: 201px; position: absolute" Text="Yes" />
-        <asp:Button ID="NoBtn" runat="server" OnClick="NoBtn_Click" style="z-index: 1; left: 324px; top: 198px; position: absolute" Text="No" />
+        <asp:Button ID="NoBtn" runat="server" OnClick="NoBtn_Click" style="z-index: 1; left: 324px; top: 198px; position: absolute; width: 35px;" Text="No" />
+       <asp:Button ID="YesBtn" runat="server" OnClick="YesBtn_Click" style="z-index: 1; left: 239px; top: 199px; position: absolute" Text="Yes" />
     </form>
 </body>
 </html>
