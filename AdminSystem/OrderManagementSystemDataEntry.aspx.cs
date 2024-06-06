@@ -66,6 +66,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void Cancelbtn_Click(object sender, EventArgs e)
     {
 
+        Response.Redirect("OrderManagementSystemList.aspx");
     }
 
     protected void Findbtn_Click1(object sender, EventArgs e)
@@ -96,5 +97,10 @@ public partial class _1_DataEntry : System.Web.UI.Page
         OrderDatetxt.Text = AllOrders.ThisOrder.OrderDate.ToString();
         orderpricetxt.Text = AllOrders.ThisOrder.OrderPrice.ToString();
         OrderStatustxt.Text = AllOrders.ThisOrder.OrderStatus;
+    }
+
+    protected void btnmenu_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }
