@@ -15,6 +15,7 @@
 <p>
     <asp:Button ID="Addbtn" runat="server" OnClick="Addbtn_Click" style="z-index: 1; left: 43px; top: 442px; position: absolute" Text="Add" />
     <asp:TextBox ID="txtReport" runat="server" style="z-index: 1; left: 144px; top: 541px; position: absolute"></asp:TextBox>
+    <asp:Button ID="btnmenu" runat="server" style="z-index: 1; left: 381px; top: 442px; position: absolute" Text="Return to the Main Menu" OnClick="btnmenu_Click1" />
 </p>
 <asp:Button ID="Editbtn" runat="server" OnClick="Editbtn_Click" style="z-index: 1; left: 148px; top: 442px; position: absolute" Text="Edit" />
 <asp:Button ID="Deletebtn" runat="server" OnClick="Deletebtn_Click" style="z-index: 1; left: 269px; top: 441px; position: absolute" Text="Delete" />

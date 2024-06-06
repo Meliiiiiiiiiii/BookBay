@@ -15,6 +15,12 @@ public partial class _1_List : System.Web.UI.Page
         {
             DisplayOrderss();
         }
+        
+
+        clsOrderUser AnUser =  new clsOrderUser();
+        AnUser = (clsOrderUser)Session["Anuser"];
+        Response.Write("Logged in as: " + AnUser.UserName);
+
     }
     void DisplayOrderss()
     {
@@ -78,8 +84,18 @@ public partial class _1_List : System.Web.UI.Page
         AllOrders.ReportByOrderStatus("");
         txtReport.Text = "";
         lstOrderList.DataSource = AllOrders.OrderList;
-        lstOrderList.DataValueField = "Order_ID";
-        lstOrderList.DataTextField = "Orders_Status";
+        lstOrderList.DataValueField = "OrderId";
+        lstOrderList.DataTextField = "OrderStatus";
         lstOrderList.DataBind();
+    }
+
+    protected void btnmenu_Click(object sender, EventArgs e)
+    {
+        
+    }
+
+    protected void btnmenu_Click1(object sender, EventArgs e)
+    {
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }

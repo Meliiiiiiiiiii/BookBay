@@ -22,6 +22,7 @@ public partial class OrderLogin : System.Web.UI.Page
         Username = Convert.ToString(txtUsername.Text);
         Password = Convert.ToString(txtPassword.Text);
         Found = AnUser.FindUser(Username, Password);
+        Session["AnUser"] = AnUser;
         if (txtUsername.Text == "")
         {
             lblError.Text = "Please enter Username";

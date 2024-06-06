@@ -43,8 +43,9 @@
 <asp:Button ID="OKbtn" runat="server" OnClick="OKbtn_Click" style="z-index: 1; left: 156px; top: 487px; position: absolute" Text="OK" />
 <p>
     <asp:Label ID="Label3" runat="server" height="32px" style="z-index: 1; left: 13px; top: 416px; position: absolute; bottom: 124px; width: 199px" Text="Order Status"></asp:Label>
-        <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 660px; top: 179px; position: absolute" Text="Label"></asp:Label>
+        <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 660px; top: 179px; position: absolute"></asp:Label>
         </p>
+        <asp:Button ID="btnmenu" runat="server" OnClick="btnmenu_Click" style="z-index: 1; left: 497px; top: 486px; position: absolute" Text="Return to the Main Menu" />
     </form>
 </body>
 </html>
