@@ -8,22 +8,23 @@ using System.Web.UI.WebControls;
 
 public partial class _1_ConfirmDelete : System.Web.UI.Page
 {
-    int ReceiptId;
+    int SellerId;
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        ReceiptId = Convert.ToInt32(Session["ReceiptId"]);
+        SellerId = Convert.ToInt32(Session["SellerId"]);
     }
 
     protected void btnYes_Click(object sender, EventArgs e)
     {
-        clsReceiptCollection receipts = new clsReceiptCollection();
-        receipts.ThisReceipt.Find(ReceiptId);
-        receipts.Delete();
-        Response.Redirect("ReceiptManagementSystemList.aspx");
+        clsSellerCollection sellers = new clsSellerCollection();
+        sellers.ThisSeller.Find(SellerId);
+        sellers.Delete();
+        Response.Redirect("SellerManagementSystemList.aspx");
     }
 
     protected void btnNo_Click(object sender, EventArgs e)
     {
-        Response.Redirect("ReceiptManagementSystemList.aspx");
+        Response.Redirect("SellerManagementSystemList.aspx");
     }
 }

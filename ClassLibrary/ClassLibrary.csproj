@@ -45,6 +45,15 @@
     <Compile Include="clsStaff.cs" />
     <Compile Include="clsStaffCollection.cs" />
     <Compile Include="clsStaffUser.cs" />
+    <Compile Include="clsOrder.cs" />
+    <Compile Include="clsOrderCollection.cs" />
+    <Compile Include="clsOrderUser.cs" />
+    <Compile Include="clsReceipt.cs" />
+    <Compile Include="clsReceiptCollection.cs" />
+    <Compile Include="clsReceiptUser.cs" />
+    <Compile Include="clsSeller.cs" />
+    <Compile Include="clsSellerCollection.cs" />
+    <Compile Include="clsSellerUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
