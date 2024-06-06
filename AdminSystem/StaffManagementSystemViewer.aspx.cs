@@ -13,14 +13,24 @@ public partial class _1Viewer : System.Web.UI.Page
         //create a new instance of clsStaff
         clsStaff aStaff = new clsStaff();
         //get the data from the session object
-        aStaff = (clsStaff)Session["astaff"];
+        
         //display the staff info
-        Response.Write(aStaff.StaffName);
-        Response.Write(aStaff.StaffEmail);
-        Response.Write(aStaff.StaffPhone);
-        Response.Write(aStaff.StaffHireDate);
-        Response.Write(aStaff.StaffSalary);
-        Response.Write(aStaff.StaffIsAdmin);
+        StaffIDtxt.Text = aStaff.StaffID.ToString();
+        NameIDtxt.Text = aStaff.StaffName;
+        Emailtxt.Text = aStaff.StaffEmail;
+        Phonetxt.Text = aStaff.StaffPhone;
+        hiredatetxt.Text = aStaff.StaffHireDate.ToString();
+        salarytxt.Text = aStaff.StaffSalary.ToString();
+
+    }
+
+    protected void Cancelbtn_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("StaffManagementSystemList.aspx");
+    }
+
+    protected void salarytxt_TextChanged(object sender, EventArgs e)
+    {
 
     }
 }

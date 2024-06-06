@@ -24,10 +24,11 @@
         </p>
         <p>
             <asp:Label ID="Label1" runat="server" style="z-index: 1; left: 87px; top: 449px; position: absolute; width: 155px" Text="Enter a salary (£)"></asp:Label>
-             <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 44px; top: 578px; position: absolute; width: 155px; margin-bottom: 21px;" Text="lblError"></asp:Label>
+             <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 500px; top: 135px; position: absolute; width: 155px; margin-bottom: 21px;" Text="lblError"></asp:Label>
             <asp:TextBox ID="Salarytext" runat="server" style="z-index: 1; left: 230px; top: 449px; position: absolute"></asp:TextBox>
-            <asp:Button ID="Btnfilter" runat="server" OnClick="Btnfilter_Click" style="z-index: 1; left: 178px; top: 490px; position: absolute; right: 303px" Text="Apply Filter" width="100px" />
-            <asp:Button ID="BtnClear" runat="server" height="26px" OnClick="BtnClear_Click" style="z-index: 1; left: 177px; top: 540px; position: absolute" Text="Clear Filter" width="100px" />
+            <asp:Button ID="Btnfilter" runat="server" OnClick="Btnfilter_Click" style="z-index: 1; left: 179px; top: 516px; position: absolute; right: 1024px" Text="Apply Filter" width="100px" />
+            <asp:Button ID="BtnClear" runat="server" height="35px" OnClick="BtnClear_Click" style="z-index: 1; left: 180px; top: 579px; position: absolute" Text="Clear Filter" width="100px" />
+            <asp:Button ID="Btnmenu" runat="server" OnClick="Btnmenu_Click" style="z-index: 1; left: 419px; top: 580px; position: absolute" Text="Return to main menu" />
         </p>
        
     </form>

@@ -44,7 +44,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //capture the salary
         int Salary = Convert.ToInt32(salarytxt.Text);
         //capture the is admin
-        Boolean IsAdmin = Convert.ToBoolean(IsAdmintxt.Text);
+        string IsAdmin = IsAdmintxt.Text;
         //variable to store any error messages
         String Error = "";
         //validate data
@@ -64,7 +64,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             //capture the staff Salary
             aStaff.StaffSalary = Salary;
             //capture the staff Is Admin
-            aStaff.StaffIsAdmin = IsAdmin;
+            aStaff.StaffIsAdmin = Convert.ToBoolean(IsAdmin);
             //create a new instance of the staff collection
             clsStaffCollection StaffList = new clsStaffCollection();
             //if this is a new record
@@ -144,5 +144,15 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void Cancelbtn_Click(object sender, EventArgs e)
     {
         Response.Redirect("StaffManagementSystemList.aspx");
+    }
+
+    protected void Btnmenu_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("TeamMainMenu.aspx");
+    }
+
+    protected void hiredatetxt_TextChanged(object sender, EventArgs e)
+    {
+
     }
 }

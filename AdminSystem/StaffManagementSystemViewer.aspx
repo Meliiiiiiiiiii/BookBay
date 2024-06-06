@@ -39,10 +39,10 @@
     <asp:Label ID="hiredate" runat="server" height="32px" style="z-index: 1; left: 23px; top: 317px; position: absolute; width: 247px" Text="Hire Date"></asp:Label>
 </p>
 <p>
-    <asp:TextBox ID="salarytxt" runat="server" height="38px" style="z-index: 1; left: 283px; top: 372px; position: absolute" width="248px"></asp:TextBox>
+    <asp:TextBox ID="salarytxt" runat="server" height="38px" style="z-index: 1; left: 283px; top: 372px; position: absolute" width="248px" OnTextChanged="salarytxt_TextChanged"></asp:TextBox>
 </p>
 <p>
-    <asp:Button ID="Cancelbtn" runat="server" style="z-index: 1; top: 487px; position: absolute; left: 312px" Text="Cancel" />
+    <asp:Button ID="Cancelbtn" runat="server" style="z-index: 1; top: 487px; position: absolute; left: 312px; height: 35px;" Text="Cancel" OnClick="Cancelbtn_Click" />
 </p>
 
 <p>

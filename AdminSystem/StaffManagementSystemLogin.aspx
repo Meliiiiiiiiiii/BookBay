@@ -21,14 +21,16 @@
         <asp:TextBox ID="Passwordtxt" runat="server" style="z-index: 1; left: 219px; top: 233px; position: absolute; height: 22px; width: 175px; margin-top: 0px" TextMode="Password"></asp:TextBox>
         <p>
             &nbsp;</p>
-        <asp:Button ID="Loginbtn" runat="server" OnClick="Loginbtn_Click" style="z-index: 1; left: 162px; top: 297px; position: absolute" Text="Login" />
+        <asp:Button ID="Loginbtn" runat="server" OnClick="Loginbtn_Click" style="z-index: 1; left: 197px; top: 331px; position: absolute; bottom: 324px;" Text="Login" height="35px" width="90px" />
+        <p>
+            <asp:Label ID="errorlbl" runat="server" ForeColor="Red" style="z-index: 1; left: 502px; top: 202px; position: absolute" Text="lblError"></asp:Label>
+        </p>
         <p>
             &nbsp;</p>
         <p>
-            <asp:Button ID="cancelbtn" runat="server" style="z-index: 1; left: 269px; top: 296px; position: absolute" Text="Cancel" />
-        </p>
+            &nbsp;</p>
         <p>
-            <asp:Label ID="errorlbl" runat="server" ForeColor="Red" style="z-index: 1; left: 469px; top: 202px; position: absolute" Text="lblError"></asp:Label>
+            <asp:Button ID="cancelbtn" runat="server" style="z-index: 1; left: 197px; top: 407px; position: absolute" Text="Cancel" OnClick="cancelbtn_Click" height="35px" width="90px" />
         </p>
     </form>
 </body>

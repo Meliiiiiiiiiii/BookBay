@@ -88,32 +88,63 @@ namespace ClassLibrary
             }
         }
 
-        public string Valid(string staffName, string staffEmail, string staffPhone, string staffHireDate,bool staffIsAdmin, int staffSalary)
+        public string Valid(string staffName, string staffEmail, string staffPhone, string staffHireDate, string staffIsAdmin, int staffSalary)
         {
             //create a string variable to store the error
             String Error = "";
             //create a temporary
             DateTime DateTemp;
             //if the StaffName is blank
-            if (staffName.Length==0)
+            if (staffName.Length == 0)
             {
                 //record the error
                 Error = Error + "The staff name may not be blank";
             }
             //if the staff name is greater than 40 characters
-            if(staffName.Length>40)
+            if (staffName.Length > 40)
             {
                 //record the error
                 Error = Error + "The staff name must be less than 40 characters";
             }
+            if (staffEmail.Length == 0)
+            {
+                //record the error
+                Error = Error + "The staff email may not be blank";
+            }
+            else if (!staffEmail.Contains("@")|| !staffEmail.Contains(".")) {
+                Error += "The staff email is not valid";
+
+            }
+            //if the staff email is greater than 150 characters
+            if (staffEmail.Length > 150)
+            {
+                //record the error
+                Error = Error + "The staff email must be less than 150 characters";
+            }
+
+            //if the StaffPhone is blank
+            if (staffPhone.Length == 0)
+            {
+                //record the error
+                Error = Error + "The staff phone may not be blank";
+            }
+            //if the staff name is greater than 15 characters
+            if (staffPhone.Length > 15)
+            {
+                //record the error
+                Error = Error + "The staff phone must be less than 16 characters";
+            }
+
+            
             //create an instance of datetime to compare with datetemp
             DateTime DateComp = DateTime.Now.Date;
+            DateTime MinDate = DateComp.AddYears(-5);
             try
             {
                 //copy the dateAdded value to the DateTemp variable
                 DateTemp = Convert.ToDateTime(staffHireDate);
                 //check to see if the date is less than today's date
-                if(DateTemp<DateComp)
+                if(DateTemp<MinDate)
                 {
                     Error = Error + "The date cannot be in the past ";
                 }
@@ -127,6 +158,29 @@ namespace ClassLibrary
             {
                 //record the error 
                 Error = Error + "The date is not a valid date";
+            }
+            //validate staff is admin
+            
+           
+            if (!staffIsAdmin.Equals("true", StringComparison.OrdinalIgnoreCase) && !staffIsAdmin.Equals("false", StringComparison.OrdinalIgnoreCase))
+            {
+                Error += "The admin status must be either true or false"; ;
+            }
+            
+            
+            if (staffIsAdmin.Length == 0)
+            {
+                Error += "The admin status must not be empty";
+            }
+            //validate the salary
+            
+            if (staffSalary < 0)
+            {
+                Error += "The salary must be a positive value";
+            }
+            if(staffSalary>9999)
+            {
+                Error += "The salary must be less than 10000";
             }
             //return any error message
             return Error;
