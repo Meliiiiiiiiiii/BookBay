@@ -39,4 +39,9 @@ public partial class TeamMainMenu : System.Web.UI.Page
         Response.Redirect("OrderLogin.aspx");
         
     }
+
+    protected void Unnamed5_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("ReceiptManagementSystemLogin.aspx");
+    }
 }
