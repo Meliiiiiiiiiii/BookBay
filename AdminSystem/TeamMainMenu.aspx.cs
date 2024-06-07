@@ -44,4 +44,9 @@ public partial class TeamMainMenu : System.Web.UI.Page
     {
         Response.Redirect("ReceiptManagementSystemLogin.aspx");
     }
+
+    protected void Unnamed2_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("CustomerManagementSystemLogin.aspx");
+    }
 }

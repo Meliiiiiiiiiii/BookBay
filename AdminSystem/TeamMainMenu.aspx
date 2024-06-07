@@ -32,7 +32,7 @@
         <div class="menu">
             <br />
             <asp:Button runat="server" style="margin-left: 517px; margin-top: 5px;" Text="Staff Management System " Width="256px" /> 
-            <asp:Button  runat="server" style="z-index: 1; left: 528px; top: 188px; position: absolute; width: 256px" Text="Customer Management System" /> <br />
+            <asp:Button  runat="server" style="z-index: 1; left: 528px; top: 188px; position: absolute; width: 256px" Text="Customer Management System" OnClick="Unnamed2_Click" /> <br />
             <asp:Button  runat="server" style="z-index: 1; left: 528px; top: 232px; position: absolute; width: 256px" Text="Book Management System" />
             <br />
             <asp:Button  runat="server" style="z-index: 1; left: 529px; top: 278px; position: absolute; width: 256px" Text="Order Management System" OnClick="Unnamed4_Click" /><br />
